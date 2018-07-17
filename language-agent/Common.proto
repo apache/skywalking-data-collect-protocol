@@ -15,25 +15,15 @@
  * limitations under the License.
  *
  */
- 
+
 syntax = "proto3";
 
 option java_multiple_files = true;
-option java_package = "org.apache.skywalking.apm.network.proto";
+option java_package = "org.apache.skywalking.apm.network.language.agent";
 option csharp_namespace = "SkyWalking.NetworkProtocol";
 
-import "KeyWithIntegerValue.proto";
-
-//register service for ApplicationCode, this service is called when service starts.
-service ApplicationRegisterService {
-    rpc applicationCodeRegister (Application) returns (ApplicationMapping) {
-    }
-}
-
-message Application {
-    string applicationCode = 1;
-}
-
-message ApplicationMapping {
-    KeyWithIntegerValue application = 1;
+enum SpanType {
+    Entry = 0;
+    Exit = 1;
+    Local = 2;
 }
