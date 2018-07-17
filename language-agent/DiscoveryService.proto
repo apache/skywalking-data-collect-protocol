@@ -23,7 +23,7 @@ option java_package = "org.apache.skywalking.apm.network.language.agent";
 option csharp_namespace = "SkyWalking.NetworkProtocol";
 
 import "Common.proto";
-import "../Downstream.proto";
+import "Downstream.proto";
 
 service InstanceDiscoveryService {
     rpc registerInstance (ApplicationInstance) returns (ApplicationInstanceMapping) {

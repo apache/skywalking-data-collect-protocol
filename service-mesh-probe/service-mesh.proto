@@ -21,10 +21,8 @@ syntax = "proto3";
 option java_multiple_files = true;
 option java_package = "org.apache.skywalking.apm.network.servicemesh";
 
-import "../Downstream.proto";
-
 service ServiceMeshMetricService {
-    rpc collect(stream serviceMeshMetric) returns (Downstream) {
+    rpc collect(stream serviceMeshMetric) returns (MeshProbeDownstream) {
     }
 }
 
@@ -56,5 +54,5 @@ enum DetectPoint {
     proxy = 2;
 }
 
-message Downstream {
+message MeshProbeDownstream {
 }
