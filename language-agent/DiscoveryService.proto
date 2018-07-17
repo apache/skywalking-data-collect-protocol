@@ -22,8 +22,8 @@ option java_multiple_files = true;
 option java_package = "org.apache.skywalking.apm.network.language.agent";
 option csharp_namespace = "SkyWalking.NetworkProtocol";
 
-import "Common.proto";
-import "Downstream.proto";
+import "language-agent/Common.proto";
+import "language-agent/Downstream.proto";
 
 service InstanceDiscoveryService {
     rpc registerInstance (ApplicationInstance) returns (ApplicationInstanceMapping) {

@@ -22,9 +22,9 @@ option java_multiple_files = true;
 option java_package = "org.apache.skywalking.apm.network.language.agent";
 option csharp_namespace = "SkyWalking.NetworkProtocol";
 
-import "Common.proto";
-import "Downstream.proto";
-import "KeyWithStringValue.proto";
+import "language-agent/Common.proto";
+import "language-agent/Downstream.proto";
+import "language-agent/KeyWithStringValue.proto";
 
 service TraceSegmentService {
     rpc collect (stream UpstreamSegment) returns (Downstream) {
