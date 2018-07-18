@@ -27,20 +27,22 @@ service ServiceMeshMetricService {
 }
 
 message serviceMeshMetric {
-    string sourceServiceName = 1;
-    int32 sourceServiceId = 2;
-    string sourceServiceInstance = 3;
-    int32 sourceServiceInstanceId = 4;
-    string destServiceName = 5;
-    int32 destServiceId = 6;
-    string destServiceInstance = 7;
-    int32 destServiceInstanceId = 8;
-    string endpoint = 9;
-    int32 latency = 10;
-    int32 responseCode = 11;
-    bool status = 12;
-    Protocol protocol = 13;
-    DetectPoint detectPoint = 14;
+    int64 startTime = 1;
+    int64 endTime = 2;
+    string sourceServiceName = 3;
+    int32 sourceServiceId = 4;
+    string sourceServiceInstance = 5;
+    int32 sourceServiceInstanceId = 6;
+    string destServiceName = 7;
+    int32 destServiceId = 8;
+    string destServiceInstance = 9;
+    int32 destServiceInstanceId = 10;
+    string endpoint = 11;
+    int32 latency = 12;
+    int32 responseCode = 13;
+    bool status = 14;
+    Protocol protocol = 15;
+    DetectPoint detectPoint = 16;
 }
 
 enum Protocol {
