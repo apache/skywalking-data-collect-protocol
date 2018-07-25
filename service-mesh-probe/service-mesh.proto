@@ -22,11 +22,11 @@ option java_multiple_files = true;
 option java_package = "org.apache.skywalking.apm.network.servicemesh";
 
 service ServiceMeshMetricService {
-    rpc collect(stream serviceMeshMetric) returns (MeshProbeDownstream) {
+    rpc collect(stream ServiceMeshMetric) returns (MeshProbeDownstream) {
     }
 }
 
-message serviceMeshMetric {
+message ServiceMeshMetric {
     int64 startTime = 1;
     int64 endTime = 2;
     string sourceServiceName = 3;
