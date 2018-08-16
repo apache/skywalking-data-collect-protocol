@@ -19,33 +19,17 @@
 syntax = "proto3";
 
 option java_multiple_files = true;
-option java_package = "org.apache.skywalking.apm.network.common";
+option java_package = "org.apache.skywalking.apm.network.register";
 option csharp_namespace = "SkyWalking.NetworkProtocol";
 
-message KeyStringValuePair {
-    string key = 1;
-    string value = 2;
+import "common/common.proto";
+
+service ServiceInstancePing {
+    rpc doPing (ServiceInstancePingPkg) returns (Commands) {
+    }
 }
 
-message KeyIntValuePair {
-    string key = 1;
-    int32 value = 2;
-}
-
-// In most cases, detect point should be `server` or `client`.
-// Even in service mesh, this means `server`/`client` side sidecar
-// `proxy` is reserved only.
-enum DetectPoint {
-    client = 0;
-    server = 1;
-    proxy = 2;
-}
-
-meesage Commands {
-    repeated Command commands = 1;
-}
-
-message Command {
-    string command = 1;
-    repeated KeyStringValuePair args = 2;
+message ServiceInstancePingPkg {
+    int32 serviceInstanceId = 1;
+    int64 time = 2;
 }

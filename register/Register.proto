@@ -62,8 +62,9 @@ message ServiceInstances {
 message ServiceInstance {
     int32 serviceId = 1;
     string instanceUUID = 2;
-    repeated KeyStringValuePair tags = 3;
-    repeated KeyStringValuePair properties = 4;
+    int64 time = 3;
+    repeated KeyStringValuePair tags = 4;
+    repeated KeyStringValuePair properties = 5;
 }
 
 message ServiceInstanceRegisterMapping {
