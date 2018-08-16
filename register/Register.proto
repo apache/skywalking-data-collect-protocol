@@ -1,0 +1,84 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "org.apache.skywalking.apm.network.register";
+option csharp_namespace = "SkyWalking.NetworkProtocol";
+
+import "common/common.proto";
+
+//register service for ApplicationCode, this service is called when service starts.
+service Register {
+    rpc doServiceRegister (Services) returns (ServiceRegisterMapping) {
+    }
+
+    rpc doServiceInstanceRegister (ServiceInstances) returns (ServiceInstanceRegisterMapping) {
+    }
+
+    rpc doEndpointRegister (Enpoints) returns (EndpointMapping) {
+    }
+
+    rpc doNetworkAddressRegister (NetAddresses) returns (NetAddressMapping) {
+    }
+}
+
+// Service register
+message Services {
+    repeated Service services = 1;
+}
+
+message Service {
+    string serviceName = 1;
+    repeated KeyStringValuePair tags = 3;
+    repeated KeyStringValuePair properties = 4;
+}
+
+message ServiceRegisterMapping {
+    repeated KeyIntValuePair services = 1;
+}
+
+// Service Instance register
+message ServiceInstances {
+    repeated ServiceInstance instances = 1;
+}
+
+message ServiceInstance {
+    int32 serviceId = 1;
+    string instanceUUID = 2;
+    repeated KeyStringValuePair tags = 3;
+    repeated KeyStringValuePair properties = 4;
+}
+
+message ServiceInstanceRegisterMapping {
+    repeated KeyIntValuePair serviceInstances = 1;
+}
+
+// Network address register
+
+// Only known use case is the language agent.
+// Network address represents the ip/hostname:port, which is usually used at client side of RPC.
+message NetAddresses {
+    repeated string addresses = 1;
+}
+
+message NetAddressMapping {
+    repeated KeyIntValuePair addressIds = 1;
+}
+
+// Endpint register
+message Enpoints {
+    repeated Endpoint endpoints = 1;
+}
+
+message Endpoint {
+    int32 serviceId = 1;
+    string endpointName = 2;
+    repeated KeyStringValuePair tags = 3;
+    repeated KeyStringValuePair properties = 4;
+    // For endpoint
+    // from DetectPoint is either `client` or `server`. No chance to be `proxy`.
+    DetectPoint from = 5;
+}
+
+message EndpointMapping {
+    repeated KeyIntValuePair endpoints = 1;
+}

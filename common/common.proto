@@ -19,38 +19,24 @@
 syntax = "proto3";
 
 option java_multiple_files = true;
-option java_package = "org.apache.skywalking.apm.network.servicemesh";
+option java_package = "org.apache.skywalking.apm.network.common";
+option csharp_namespace = "SkyWalking.NetworkProtocol";
 
-import "common/common.proto";
-
-service ServiceMeshMetricService {
-    rpc collect(stream ServiceMeshMetric) returns (MeshProbeDownstream) {
-    }
+message KeyStringValuePair {
+    string key = 1;
+    string value = 2;
 }
 
-message ServiceMeshMetric {
-    int64 startTime = 1;
-    int64 endTime = 2;
-    string sourceServiceName = 3;
-    int32 sourceServiceId = 4;
-    string sourceServiceInstance = 5;
-    int32 sourceServiceInstanceId = 6;
-    string destServiceName = 7;
-    int32 destServiceId = 8;
-    string destServiceInstance = 9;
-    int32 destServiceInstanceId = 10;
-    string endpoint = 11;
-    int32 latency = 12;
-    int32 responseCode = 13;
-    bool status = 14;
-    Protocol protocol = 15;
-    DetectPoint detectPoint = 16;
+message KeyIntValuePair {
+    string key = 1;
+    int32 value = 2;
 }
 
-enum Protocol {
-    HTTP = 0;
-    gRPC = 1;
-}
-
-message MeshProbeDownstream {
+// In most cases, detect point should be `server` or `client`.
+// Even in service mesh, this means `server`/`client` side sidecar
+// `proxy` is reserved only.
+enum DetectPoint {
+    client = 0;
+    server = 1;
+    proxy = 2;
 }
