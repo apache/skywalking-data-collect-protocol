@@ -41,7 +41,7 @@ enum DetectPoint {
     proxy = 2;
 }
 
-meesage Commands {
+message Commands {
     repeated Command commands = 1;
 }
 
