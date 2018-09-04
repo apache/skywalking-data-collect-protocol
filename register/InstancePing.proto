@@ -31,5 +31,6 @@ service ServiceInstancePing {
 
 message ServiceInstancePingPkg {
     int32 serviceInstanceId = 1;
+    string serviceInstanceCode = 1;
     int64 time = 2;
 }
