@@ -57,7 +57,7 @@ message SpanObjectV2 {
     int32 parentSpanId = 2;
     int64 startTime = 3;
     int64 endTime = 4;
-    repeated TraceSegmentReference refs = 5;
+    repeated SegmentReference refs = 5;
     int32 operationNameId = 6;
     string operationName = 7;
     int32 peerId = 8;
@@ -67,8 +67,8 @@ message SpanObjectV2 {
     int32 componentId = 12;
     string component = 13;
     bool isError = 14;
-    repeated KeyWithStringValue tags = 15;
-    repeated LogMessage logs = 16;
+    repeated KeyStringValuePair tags = 15;
+    repeated Log logs = 16;
 }
 
 message Log {
