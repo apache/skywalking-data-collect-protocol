@@ -99,5 +99,11 @@ message Endpoint {
 }
 
 message EndpointMapping {
-    repeated KeyIntValuePair endpoints = 1;
+    repeated EndpointMappingElement elements = 1;
+}
+
+message EndpointMappingElement {
+    string endpointName = 1;
+    int32 serviceId = 2;
+    DetectPoint from = 3;
 }
