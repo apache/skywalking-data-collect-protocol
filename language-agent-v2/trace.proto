@@ -25,7 +25,7 @@ option csharp_namespace = "SkyWalking.NetworkProtocol";
 import "common/common.proto";
 
 service TraceSegmentReportService {
-    rpc collect (stream UpstreamSegment) returns (Downstream) {
+    rpc collect (stream UpstreamSegment) returns (Commands) {
     }
 }
 

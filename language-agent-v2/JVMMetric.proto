@@ -26,7 +26,7 @@ import "common/common.proto";
 import "common/JVM.proto";
 
 service JVMMetricReportService {
-    rpc collect (JVMMetrics) returns (Downstream) {
+    rpc collect (JVMMetricCollection) returns (Commands) {
     }
 }
 

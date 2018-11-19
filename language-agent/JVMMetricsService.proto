@@ -29,3 +29,8 @@ service JVMMetricsService {
     rpc collect (JVMMetrics) returns (Downstream) {
     }
 }
+
+message JVMMetrics {
+    repeated JVMMetric metrics = 1;
+    int32 applicationInstanceId = 2;
+}
