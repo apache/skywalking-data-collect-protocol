@@ -49,7 +49,7 @@ message SegmentReference {
     string entryEndpoint = 8;
     int32 entryEndpointId = 9;
     string parentEndpoint = 10;
-    int32 parentEndopintId = 11;
+    int32 parentEndpointId = 11;
 }
 
 message SpanObjectV2 {
