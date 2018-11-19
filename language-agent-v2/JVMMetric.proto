@@ -19,18 +19,18 @@
 syntax = "proto3";
 
 option java_multiple_files = true;
-option java_package = "org.apache.skywalking.apm.network.register.v2";
+option java_package = "org.apache.skywalking.apm.network.language.agent.v2";
 option csharp_namespace = "SkyWalking.NetworkProtocol";
 
 import "common/common.proto";
+import "common/JVM.proto";
 
-service ServiceInstancePing {
-    rpc doPing (ServiceInstancePingPkg) returns (Commands) {
+service JVMMetricReportService {
+    rpc collect (JVMMetrics) returns (Downstream) {
     }
 }
 
-message ServiceInstancePingPkg {
-    int32 serviceInstanceId = 1;
-    int64 time = 2;
-    string serviceInstanceUUID = 3;
+message JVMMetricCollection {
+    repeated JVMMetric metrics = 1;
+    int32 serviceInstanceId = 2;
 }

@@ -19,18 +19,28 @@
 syntax = "proto3";
 
 option java_multiple_files = true;
-option java_package = "org.apache.skywalking.apm.network.register.v2";
+option java_package = "org.apache.skywalking.apm.network.language.agent";
 option csharp_namespace = "SkyWalking.NetworkProtocol";
 
-import "common/common.proto";
-
-service ServiceInstancePing {
-    rpc doPing (ServiceInstancePingPkg) returns (Commands) {
-    }
+message UpstreamSegment {
+    repeated UniqueId globalTraceIds = 1;
+    bytes segment = 2; // the byte array of TraceSegmentObject
 }
 
-message ServiceInstancePingPkg {
-    int32 serviceInstanceId = 1;
-    int64 time = 2;
-    string serviceInstanceUUID = 3;
+message UniqueId {
+    repeated int64 idParts = 1;
+}
+
+enum RefType {
+    CrossProcess = 0;
+    CrossThread = 1;
+}
+
+enum SpanLayer {
+    Unknown = 0;
+    Database = 1;
+    RPCFramework = 2;
+    Http = 3;
+    MQ = 4;
+    Cache = 5;
 }

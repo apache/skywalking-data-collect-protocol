@@ -19,15 +19,12 @@
 syntax = "proto3";
 
 option java_multiple_files = true;
-option java_package = "org.apache.skywalking.apm.network.language.agent";
+option java_package = "org.apache.skywalking.apm.network.language.agent.v2";
 option csharp_namespace = "SkyWalking.NetworkProtocol";
 
-import "language-agent/Common.proto";
-import "language-agent/Downstream.proto";
-import "language-agent/KeyWithStringValue.proto";
-import "common/trace-common.proto"
+import "common/common.proto";
 
-service TraceSegmentService {
+service TraceSegmentReportService {
     rpc collect (stream UpstreamSegment) returns (Downstream) {
     }
 }
@@ -35,8 +32,8 @@ service TraceSegmentService {
 message TraceSegmentObject {
     UniqueId traceSegmentId = 1;
     repeated SpanObject spans = 2;
-    int32 applicationId = 3;
-    int32 applicationInstanceId = 4;
+    int32 serviceId = 3;
+    int32 serviceInstanceId = 4;
     bool isSizeLimited = 5;
 }
 
@@ -44,14 +41,14 @@ message TraceSegmentReference {
     RefType refType = 1;
     UniqueId parentTraceSegmentId = 2;
     int32 parentSpanId = 3;
-    int32 parentApplicationInstanceId = 4;
+    int32 parentServiceInstanceId = 4;
     string networkAddress = 5;
     int32 networkAddressId = 6;
-    int32 entryApplicationInstanceId = 7;
-    string entryServiceName = 8;
-    int32 entryServiceId = 9;
-    string parentServiceName = 10;
-    int32 parentServiceId = 11;
+    int32 entryServiceInstanceId = 7;
+    string entryEndpoint = 8;
+    int32 entryEndpointId = 9;
+    string parentEndpoint = 10;
+    int32 parentEndopintId = 11;
 }
 
 message SpanObject {
@@ -73,7 +70,7 @@ message SpanObject {
     repeated LogMessage logs = 16;
 }
 
-message LogMessage {
+message Log {
     int64 time = 1;
-    repeated KeyWithStringValue data = 2;
+    repeated KeyStringValuePair data = 2;
 }
