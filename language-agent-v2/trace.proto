@@ -23,22 +23,22 @@ option java_package = "org.apache.skywalking.apm.network.language.agent.v2";
 option csharp_namespace = "SkyWalking.NetworkProtocol";
 
 import "common/common.proto";
-import "trace-common.proto";
+import "common/trace-common.proto";
 
 service TraceSegmentReportService {
     rpc collect (stream UpstreamSegment) returns (Commands) {
     }
 }
 
-message TraceSegmentObject {
+message SegmentObject {
     UniqueId traceSegmentId = 1;
-    repeated SpanObject spans = 2;
+    repeated SpanObjectV2 spans = 2;
     int32 serviceId = 3;
     int32 serviceInstanceId = 4;
     bool isSizeLimited = 5;
 }
 
-message TraceSegmentReference {
+message SegmentReference {
     RefType refType = 1;
     UniqueId parentTraceSegmentId = 2;
     int32 parentSpanId = 3;
@@ -52,7 +52,7 @@ message TraceSegmentReference {
     int32 parentEndopintId = 11;
 }
 
-message SpanObject {
+message SpanObjectV2 {
     int32 spanId = 1;
     int32 parentSpanId = 2;
     int64 startTime = 3;

@@ -27,6 +27,12 @@ message UpstreamSegment {
     bytes segment = 2; // the byte array of TraceSegmentObject
 }
 
+enum SpanType {
+    Entry = 0;
+    Exit = 1;
+    Local = 2;
+}
+
 message UniqueId {
     repeated int64 idParts = 1;
 }
