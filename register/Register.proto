@@ -112,8 +112,8 @@ message EndpointMappingElement {
 }
 
 message ServiceAndNetworkAddressMapping {
-    int serviceId = 1;
-    int serviceInstanceId = 2;
+    int32 serviceId = 1;
+    int32 serviceInstanceId = 2;
     string networkAddress = 3;
-    int networkAddressId = 4;
+    int32 networkAddressId = 4;
 }
