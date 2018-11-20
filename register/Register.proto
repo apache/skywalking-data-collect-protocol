@@ -38,7 +38,7 @@ service Register {
     rpc doNetworkAddressRegister (NetAddresses) returns (NetAddressMapping) {
     }
 
-    rpc doServiceAndNetworkAddressMappingRegister (ServiceAndNetworkAddressMapping) returns(Commands) {
+    rpc doServiceAndNetworkAddressMappingRegister (ServiceAndNetworkAddressMappings) returns(Commands) {
     }
 }
 
@@ -109,6 +109,10 @@ message EndpointMappingElement {
     string endpointName = 1;
     int32 serviceId = 2;
     DetectPoint from = 3;
+}
+
+message ServiceAndNetworkAddressMappings {
+    repeated ServiceAndNetworkAddressMapping mappings = 1;
 }
 
 message ServiceAndNetworkAddressMapping {
