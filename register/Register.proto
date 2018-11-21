@@ -106,9 +106,10 @@ message EndpointMapping {
 }
 
 message EndpointMappingElement {
-    string endpointName = 1;
-    int32 serviceId = 2;
-    DetectPoint from = 3;
+    int32 serviceId = 1;
+    string endpointName = 2;
+    int32 endpointId = 3;
+    DetectPoint from = 4;
 }
 
 message ServiceAndNetworkAddressMappings {
