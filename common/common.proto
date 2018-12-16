@@ -41,11 +41,11 @@ enum DetectPoint {
     proxy = 2;
 }
 
-message Commands {
-    repeated Command commands = 1;
-}
-
 message Command {
     string command = 1;
     repeated KeyStringValuePair args = 2;
+}
+
+message Commands {
+    repeated Command commands = 1;
 }
