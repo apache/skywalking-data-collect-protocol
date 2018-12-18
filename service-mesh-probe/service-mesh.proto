@@ -18,7 +18,7 @@
 
 syntax = "proto3";
 
-package org.apache.skywalking.apm.network.servicemesh;
+import "common/common.proto";
 
 option java_multiple_files = true;
 option java_package = "org.apache.skywalking.apm.network.servicemesh";
@@ -50,15 +50,6 @@ message ServiceMeshMetric {
 enum Protocol {
     HTTP = 0;
     gRPC = 1;
-}
-
-// In most cases, detect point should be `server` or `client`.
-// Even in service mesh, this means `server`/`client` side sidecar
-// `proxy` is reserved only.
-enum DetectPoint {
-    client = 0;
-    server = 1;
-    proxy = 2;
 }
 
 message MeshProbeDownstream {
