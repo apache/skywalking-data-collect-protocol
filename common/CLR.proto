@@ -19,8 +19,8 @@
 syntax = "proto3";
 
 option java_multiple_files = true;
-option java_package = "org.apache.skywalking.apm.network.language.agent";
-option csharp_namespace = "SkyWalking.NetworkProtocol";
+option java_package = "org.apache.skywalking.apm.network.language.agent.clr";
+option csharp_namespace = "SkyWalking.NetworkProtocol.Clr";
 
 message CLRMetric {
     int64 time = 1;
@@ -43,6 +43,6 @@ message GC {
 message Thread {
     int32 AvailableCompletionPortThreads = 1;
     int32 AvailableWorkerThreads = 2;
-    int32 MaxCompletionPortThreads = 1;
-    int32 MaxWorkerThreads = 2;
+    int32 MaxCompletionPortThreads = 3;
+    int32 MaxWorkerThreads = 4;
 }
