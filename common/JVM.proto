@@ -22,16 +22,14 @@ option java_multiple_files = true;
 option java_package = "org.apache.skywalking.apm.network.language.agent";
 option csharp_namespace = "SkyWalking.NetworkProtocol";
 
+import "common/common.proto";
+
 message JVMMetric {
     int64 time = 1;
     CPU cpu = 2;
     repeated Memory memory = 3;
     repeated MemoryPool memoryPool = 4;
     repeated GC gc = 5;
-}
-
-message CPU {
-    double usagePercent = 2;
 }
 
 message Memory {
