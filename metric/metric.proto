@@ -36,9 +36,9 @@ service MetricService {
 
 message EntityMetric {
     oneof metric_entity {
-        Service service = 1;
-        ServiceInstance service_instance = 2;
-        Endpoint endpoint = 3;
+        int32 service_id = 1;
+        int32 service_instance_id = 2;
+        int32 endpoint_id = 3;
     }
 
     repeated Metric metrics = 4;
@@ -46,15 +46,15 @@ message EntityMetric {
 
 message RelationMetric {
     oneof source_entity {
-        Service source_service = 1;
-        ServiceInstance source_service_instance = 2;
-        Endpoint source_endpoint = 3;
+        int32 source_service_id = 1;
+        int32 source_service_instance_id = 2;
+        int32 source_endpoint_id = 3;
     }
 
     oneof dest_entity {
-        Service dest_service = 4;
-        ServiceInstance dest_service_instance = 5;
-        Endpoint dest_endpoint = 6;
+        int32 dest_service_id = 4;
+        int32 dest_service_instance_id = 5;
+        int32 dest_endpoint_id = 6;
     }
 
     Metric metric = 7;
