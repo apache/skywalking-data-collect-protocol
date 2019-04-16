@@ -32,7 +32,7 @@ service Register {
     rpc doServiceInstanceRegister (ServiceInstances) returns (ServiceInstanceRegisterMapping) {
     }
 
-    rpc doEndpointRegister (Enpoints) returns (EndpointMapping) {
+    rpc doEndpointRegister (Endpoints) returns (EndpointMapping) {
     }
 
     rpc doNetworkAddressRegister (NetAddresses) returns (NetAddressMapping) {
@@ -87,7 +87,7 @@ message NetAddressMapping {
 }
 
 // Endpint register
-message Enpoints {
+message Endpoints {
     repeated Endpoint endpoints = 1;
 }
 
