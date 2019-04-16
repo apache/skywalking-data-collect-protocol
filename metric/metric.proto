@@ -1,0 +1,87 @@
+/*
+ * Licensed to the Apache Software Foundation (ASF) under one or more
+ * contributor license agreements.  See the NOTICE file distributed with
+ * this work for additional information regarding copyright ownership.
+ * The ASF licenses this file to You under the Apache License, Version 2.0
+ * (the "License"); you may not use this file except in compliance with
+ * the License.  You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
+
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "org.apache.skywalking.apm.network.metric";
+option csharp_namespace = "SkyWalking.NetworkProtocol";
+
+import "register/Register.proto";
+import "common/common.proto";
+
+
+service MetricService {
+    rpc reportEntityMetric (stream EntityMetric) returns (MetricResponse) {
+    }
+
+    rpc reportRelationMetric (stream RelationMetric) returns (MetricResponse) {
+    }
+}
+
+message EntityMetric {
+    oneof metric_entity {
+        Service service = 1;
+        ServiceInstance service_instance = 2;
+        Endpoint endpoint = 3;
+    }
+
+    repeated Metric metrics = 4;
+}
+
+message RelationMetric {
+    oneof source_entity {
+        Service source_service = 1;
+        ServiceInstance source_service_instance = 2;
+        Endpoint source_endpoint = 3;
+    }
+
+    oneof dest_entity {
+        Service dest_service = 4;
+        ServiceInstance dest_service_instance = 5;
+        Endpoint dest_endpoint = 6;
+    }
+
+    repeated Metric metrics = 7;
+}
+
+message Metric {
+    Type type = 4;
+
+    Gauge gaugeValues = 5;
+    Histogram histogramValues = 6;
+
+    enum Type {
+        GAUGE = 0;
+        HISTOGRAM = 1;
+    }
+
+    message Gauge {
+        string name = 1;
+        int64 value = 2;
+    }
+
+    message Histogram {
+        string name = 1;
+        repeated IntKeyIntValuePair values = 2;
+    }
+}
+
+message MetricResponse {
+
+}
