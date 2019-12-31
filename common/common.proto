@@ -64,5 +64,5 @@ enum ServiceType {
     // An agent works inside the cache server.
     cache = 3;
     // An agent works inside the browser.
-    cache = 4;
+    browser = 4;
 }
