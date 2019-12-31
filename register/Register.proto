@@ -51,6 +51,9 @@ message Service {
     string serviceName = 1;
     repeated KeyStringValuePair tags = 3;
     repeated KeyStringValuePair properties = 4;
+    // Type of this register service.
+    // NULL means type=normal, such as all services before the 7.0.0.
+    ServiceType type = 5;
 }
 
 message ServiceRegisterMapping {
