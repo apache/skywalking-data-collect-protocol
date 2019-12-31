@@ -53,3 +53,16 @@ message Command {
     string command = 1;
     repeated KeyStringValuePair args = 2;
 }
+
+enum ServiceType {
+    // An agent works inside the normal business application.
+    normal = 0;
+    // An agent works inside the database.
+    database = 1;
+    // An agent works inside the MQ.
+    mq = 2;
+    // An agent works inside the cache server.
+    cache = 3;
+    // An agent works inside the browser.
+    cache = 4;
+}
