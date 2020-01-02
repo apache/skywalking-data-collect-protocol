@@ -55,7 +55,7 @@ message PerfDetail {
     int32 reqTime = 3;
     // analysis dom tree time
     int32 domAnalysisTime = 4;
-    int32 domeReadyTime = 5;
+    int32 domReadyTime = 5;
     // page blank time
     int32 blankTime = 6;
 }
