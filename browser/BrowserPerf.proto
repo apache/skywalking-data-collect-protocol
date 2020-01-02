@@ -1,0 +1,62 @@
+/*
+ * Licensed to the Apache Software Foundation (ASF) under one or more
+ * contributor license agreements.  See the NOTICE file distributed with
+ * this work for additional information regarding copyright ownership.
+ * The ASF licenses this file to You under the Apache License, Version 2.0
+ * (the "License"); you may not use this file except in compliance with
+ * the License.  You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
+
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "org.apache.skywalking.apm.network.language.agent";
+
+import "common/common.proto";
+
+// Collect performance raw data from browser.
+service BrowserPerfService {
+    rpc collect (stream BrowserPerfData) returns (Commands) {
+    }
+}
+
+message BrowserPerfData {
+    int32 serviceId = 1;
+    // Service version in browser is the Instance concept in the backend.
+    int32 serviceVersionId = 2;
+    // Page path in the browser, mostly it is URI, without parameter
+    string pagePath = 3;
+    repeated BrowserErrorLog logs = 4;
+    PerfDetail perfDetail = 5;
+}
+
+message BrowserErrorLog {
+    string catalog = 1;
+    string grade = 2;
+    string message = 3;
+    int32 line = 4;
+    int32 col = 5;
+    string stack = 6;
+    string errorUrl = 7;
+}
+
+message PerfDetail {
+    // Unit of all time related field should be `ms`.
+    int32 redirectTime = 1;
+    int32 dnsTime = 2;
+    int32 reqTime = 3;
+    // analysis dom tree time
+    int32 domAnalysisTime = 4;
+    int32 domReadyTime = 5;
+    // page blank time
+    int32 blankTime = 6;
+}
