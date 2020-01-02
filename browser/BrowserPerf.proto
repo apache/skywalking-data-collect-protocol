@@ -36,7 +36,7 @@ message BrowserPerfData {
     // Page path in the browser, mostly it is URI, without parameter
     string pagePath = 3;
     repeated BrowserErrorLog logs = 4;
-
+    PerfDetail perfDetail = 5;
 }
 
 message BrowserErrorLog {
