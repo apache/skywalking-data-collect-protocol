@@ -40,12 +40,13 @@ message BrowserPerfData {
 }
 
 message BrowserErrorLog {
-    int64 time = 1;
-    string catalog = 2;
-    string grade = 3;
-    string message = 4;
-    int32 line = 5;
+    string catalog = 1;
+    string grade = 2;
+    string message = 3;
+    int32 line = 4;
+    int32 col = 5;
     string stack = 6;
+    string errorUrl = 7;
 }
 
 message PerfDetail {
