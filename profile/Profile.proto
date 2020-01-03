@@ -37,9 +37,6 @@ message ProfileTaskCommandQuery {
     int32 serviceId = 1;
     int32 instanceId = 2;
 
-    // current sniffer timestamp
-    int64 time = 3;
-
-    // exists task list
-    repeated string existsTaskList = 4;
+    // last commmand timestamp
+    int64 lastCommandTime = 3;
 }
