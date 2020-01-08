@@ -34,11 +34,11 @@ message BrowserPerfData {
     // Service version in browser is the Instance concept in the backend.
     int32 serviceVersionId = 2;
     // Data time
-    int64 time = 3; // assignment by the backend
+    int64 time = 3;
     // Page path in browser is the endpoint concept in the backend
     // Page path in the browser, mostly it is URI, without parameter
     string pagePath = 4;
-    int32 pagePathId = 5; // assignment by the backend
+    int32 pagePathId = 5;
     repeated BrowserErrorLog logs = 6;
     PerfDetail perfDetail = 7;
 }
@@ -52,7 +52,7 @@ message BrowserErrorLog {
     string stack = 6;
     string errorUrl = 7;
     // Error log time
-    int64 time = 8; // assignment by the backend
+    int64 time = 8;
 }
 
 message PerfDetail {
