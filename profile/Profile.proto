@@ -53,13 +53,16 @@ message ProfileTaskCommandQuery {
 
 // dumped segment snapshot
 message ProfileTaskSegemntSnapshot {
-    UniqueId traceSegmentId = 1;
-    // snapshot dump timestamp
-    int64 time = 2;
+    // profile task id
+    string taskId = 1;
+    // dumped segment id
+    UniqueId traceSegmentId = 2;
+    // dump timestamp
+    int64 time = 3;
     // snapshot dump sequence, start with zero
-    int32 sequence = 3;
+    int32 sequence = 4;
     // snapshot stack bytes
-    bytes stack = 4;
+    bytes stack = 5;
 }
 
 message ProfileTaskSegmentStack {
