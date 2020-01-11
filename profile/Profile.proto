@@ -66,16 +66,8 @@ message ProfileTaskSegemntSnapshot {
 }
 
 message ProfileTaskSegmentStack {
-    // snapshot element list
-    repeated ProfileTaskSegemntSnapshotElement elements = 1;
-}
-
-// dumped segment snapshot element
-// such as java thread stack trace element
-message ProfileTaskSegemntSnapshotElement {
-    string className = 1;
-    string methodName = 2;
-    int32 lineNumber = 3;
+    // snapshot code signature list
+    repeated string codeSignatures = 1;
 }
 
 // profile task finished report
