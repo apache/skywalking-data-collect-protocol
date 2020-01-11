@@ -61,8 +61,8 @@ message ProfileTaskSegemntSnapshot {
     int64 time = 3;
     // snapshot dump sequence, start with zero
     int32 sequence = 4;
-    // snapshot stack bytes
-    bytes stack = 5;
+    // snapshot stack
+    ProfileTaskSegmentStack stack = 5;
 }
 
 message ProfileTaskSegmentStack {
