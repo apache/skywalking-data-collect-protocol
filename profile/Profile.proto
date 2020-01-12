@@ -23,11 +23,21 @@ option java_package = "org.apache.skywalking.apm.network.language.profile";
 option csharp_namespace = "SkyWalking.NetworkProtocol";
 
 import "common/common.proto";
+import "common/trace-common.proto";
+import "language-agent/Downstream.proto";
 
 service ProfileTask {
 
     // query all sniffer need to execute profile task commands
     rpc getProfileTaskCommands (ProfileTaskCommandQuery) returns (Commands) {
+    }
+
+    // collect dumped segment snapshot
+    rpc collectSnapshot (stream ProfileTaskSegemntSnapshot) returns (Downstream) {
+    }
+
+    // report profiling task finished
+    rpc reportTaskFinish (ProfileTaskFinishReport) returns (Downstream) {
     }
 
 }
@@ -39,4 +49,33 @@ message ProfileTaskCommandQuery {
 
     // last commmand timestamp
     int64 lastCommandTime = 3;
+}
+
+// dumped segment snapshot
+message ProfileTaskSegemntSnapshot {
+    // profile task id
+    string taskId = 1;
+    // dumped segment id
+    UniqueId traceSegmentId = 2;
+    // dump timestamp
+    int64 time = 3;
+    // snapshot dump sequence, start with zero
+    int32 sequence = 4;
+    // snapshot stack
+    ProfileTaskSegmentStack stack = 5;
+}
+
+message ProfileTaskSegmentStack {
+    // snapshot code signature list
+    repeated string codeSignatures = 1;
+}
+
+// profile task finished report
+message ProfileTaskFinishReport {
+    // current sniffer information
+    int32 serviceId = 1;
+    int32 instanceId = 2;
+
+    // profile task
+    string taskId = 3;
 }
