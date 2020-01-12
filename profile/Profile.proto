@@ -33,7 +33,7 @@ service ProfileTask {
     }
 
     // collect dumped segment snapshot
-    rpc collectSnapshot (stream ProfileTaskSegemntSnapshot) returns (Downstream) {
+    rpc collectSnapshot (stream ProfileTaskSegmentSnapshot) returns (Downstream) {
     }
 
     // report profiling task finished
@@ -52,7 +52,7 @@ message ProfileTaskCommandQuery {
 }
 
 // dumped segment snapshot
-message ProfileTaskSegemntSnapshot {
+message ProfileTaskSegmentSnapshot {
     // profile task id
     string taskId = 1;
     // dumped segment id
