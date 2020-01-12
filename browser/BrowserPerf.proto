@@ -30,17 +30,19 @@ service BrowserPerfService {
 }
 
 message BrowserPerfData {
-    int32 serviceId = 1;
+    // UUID
+    string uniqueId = 1;
+    int32 serviceId = 2;
     // Service version in browser is the Instance concept in the backend.
-    int32 serviceVersionId = 2;
+    int32 serviceVersionId = 3;
     // Data time
-    int64 time = 3;
+    int64 time = 4;
     // Page path in browser is the endpoint concept in the backend
     // Page path in the browser, mostly it is URI, without parameter
-    string pagePath = 4;
-    int32 pagePathId = 5;
-    repeated BrowserErrorLog logs = 6;
-    PerfDetail perfDetail = 7;
+    string pagePath = 5;
+    int32 pagePathId = 6;
+    repeated BrowserErrorLog logs = 7;
+    PerfDetail perfDetail = 8;
 }
 
 message BrowserErrorLog {
