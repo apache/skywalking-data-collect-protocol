@@ -32,8 +32,8 @@ service ProfileTask {
     rpc getProfileTaskCommands (ProfileTaskCommandQuery) returns (Commands) {
     }
 
-    // collect dumped segment snapshot
-    rpc collectSnapshot (stream ProfileTaskSegmentSnapshot) returns (Downstream) {
+    // collect dumped thread snapshot
+    rpc collectSnapshot (stream ThreadSnapshot) returns (Downstream) {
     }
 
     // report profiling task finished
@@ -51,8 +51,8 @@ message ProfileTaskCommandQuery {
     int64 lastCommandTime = 3;
 }
 
-// dumped segment snapshot
-message ProfileTaskSegmentSnapshot {
+// dumped thread snapshot
+message ThreadSnapshot {
     // profile task id
     string taskId = 1;
     // dumped segment id
@@ -62,11 +62,11 @@ message ProfileTaskSegmentSnapshot {
     // snapshot dump sequence, start with zero
     int32 sequence = 4;
     // snapshot stack
-    ProfileTaskSegmentStack stack = 5;
+    ThreadStack stack = 5;
 }
 
-message ProfileTaskSegmentStack {
-    // snapshot code signature list
+message ThreadStack {
+    // stack code signature list
     repeated string codeSignatures = 1;
 }
 
