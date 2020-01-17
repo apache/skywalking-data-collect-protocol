@@ -24,7 +24,6 @@ option csharp_namespace = "SkyWalking.NetworkProtocol";
 
 import "common/common.proto";
 import "common/trace-common.proto";
-import "language-agent/Downstream.proto";
 
 service ProfileTask {
 
@@ -33,11 +32,11 @@ service ProfileTask {
     }
 
     // collect dumped thread snapshot
-    rpc collectSnapshot (stream ThreadSnapshot) returns (Downstream) {
+    rpc collectSnapshot (stream ThreadSnapshot) returns (Commands) {
     }
 
     // report profiling task finished
-    rpc reportTaskFinish (ProfileTaskFinishReport) returns (Downstream) {
+    rpc reportTaskFinish (ProfileTaskFinishReport) returns (Commands) {
     }
 
 }
@@ -47,7 +46,7 @@ message ProfileTaskCommandQuery {
     int32 serviceId = 1;
     int32 instanceId = 2;
 
-    // last commmand timestamp
+    // last command timestamp
     int64 lastCommandTime = 3;
 }
 
