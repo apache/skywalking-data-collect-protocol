@@ -46,7 +46,7 @@ message BrowserPerfData {
 }
 
 message BrowserErrorLog {
-    string catalog = 1;
+    ErrorCategory category = 1;
     string grade = 2;
     string message = 3;
     int32 line = 4;
@@ -55,6 +55,15 @@ message BrowserErrorLog {
     string errorUrl = 7;
     // Error log time
     int64 time = 8;
+}
+
+enum ErrorCategory {
+    ajax = 0;
+    resource = 1;
+    vue = 2;
+    promise = 3;
+    js = 4;
+    unknown = 5;
 }
 
 message PerfDetail {
