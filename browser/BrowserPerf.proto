@@ -57,7 +57,6 @@ message BrowserErrorLog {
     int64 time = 8;
 }
 
-//
 enum ErrorCategory {
     ajax = 0;
     resource = 1;
