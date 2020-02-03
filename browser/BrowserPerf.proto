@@ -41,7 +41,7 @@ message BrowserPerfData {
     // Page path in the browser, mostly it is URI, without parameter
     string pagePath = 5;
     int32 pagePathId = 6;
-    repeated BrowserErrorLog logs = 7;
+    BrowserErrorLog errorLog = 7;
     PerfDetail perfDetail = 8;
 }
 
