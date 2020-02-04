@@ -27,7 +27,7 @@ import "common/common.proto";
 service BrowserPerfService {
 
     // report once per page
-    rpc collectPerfData (stream BrowserPerfData) returns (Commands) {
+    rpc collectPerfData (BrowserPerfData) returns (Commands) {
     }
 
     // report one or more error logs for pages, could report multiple times.
