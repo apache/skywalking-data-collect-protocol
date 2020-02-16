@@ -45,17 +45,15 @@ message BrowserPerfData {
     // Page path in the browser, mostly it is URI, without parameter
     string pagePath = 4;
     int32 pagePathId = 5;
-    // Then the PV with error is only calculated when firstReportedError is true.
-    bool firstReportedError = 6;
     // Unit of all time related field should be `ms`.
-    int32 redirectTime = 7;
-    int32 dnsTime = 8;
-    int32 reqTime = 9;
+    int32 redirectTime = 6;
+    int32 dnsTime = 7;
+    int32 reqTime = 8;
     // analysis dom tree time
-    int32 domAnalysisTime = 10;
-    int32 domReadyTime = 11;
+    int32 domAnalysisTime = 9;
+    int32 domReadyTime = 10;
     // page blank time
-    int32 blankTime = 12;
+    int32 blankTime = 11;
 }
 
 message BrowserErrorLog {
@@ -77,6 +75,8 @@ message BrowserErrorLog {
     int32 col = 11;
     string stack = 12;
     string errorUrl = 13;
+    // Then the PV with error is only calculated when firstReportedError is true.
+    bool firstReportedError = 14;
 }
 
 enum ErrorCategory {
