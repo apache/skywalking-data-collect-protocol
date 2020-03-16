@@ -28,7 +28,7 @@ import "common/common.proto";
 
 message JVMMetric {
     int64 time = 1;
-    CPU cpu = 2;
+    skywalking.network.protocol.common.CPU cpu = 2;
     repeated Memory memory = 3;
     repeated MemoryPool memoryPool = 4;
     repeated GC gc = 5;

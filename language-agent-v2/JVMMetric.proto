@@ -28,11 +28,11 @@ import "common/common.proto";
 import "common/JVM.proto";
 
 service JVMMetricReportService {
-    rpc collect (JVMMetricCollection) returns (Commands) {
+    rpc collect (JVMMetricCollection) returns (skywalking.network.protocol.common.Commands) {
     }
 }
 
 message JVMMetricCollection {
-    repeated JVMMetric metrics = 1;
+    repeated skywalking.network.protocol.common.JVMMetric metrics = 1;
     int32 serviceInstanceId = 2;
 }

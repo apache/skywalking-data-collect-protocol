@@ -28,11 +28,11 @@ import "common/common.proto";
 import "common/CLR.proto";
 
 service CLRMetricReportService {
-    rpc collect (CLRMetricCollection) returns (Commands) {
+    rpc collect (CLRMetricCollection) returns (skywalking.network.protocol.common.Commands) {
     }
 }
 
 message CLRMetricCollection {
-    repeated CLRMetric metrics = 1;
+    repeated skywalking.network.protocol.common.CLRMetric metrics = 1;
     int32 serviceInstanceId = 2;
 }

@@ -27,7 +27,7 @@ option csharp_namespace = "SkyWalking.NetworkProtocol";
 import "common/common.proto";
 
 service ServiceInstancePing {
-    rpc doPing (ServiceInstancePingPkg) returns (Commands) {
+    rpc doPing (ServiceInstancePingPkg) returns (skywalking.network.protocol.common.Commands) {
     }
 }
 

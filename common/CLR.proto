@@ -28,7 +28,7 @@ import "common/common.proto";
 
 message CLRMetric {
     int64 time = 1;
-    CPU cpu = 2;
+    skywalking.network.protocol.common.CPU cpu = 2;
     ClrGC gc = 3;
     ClrThread thread = 4;
 }

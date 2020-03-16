@@ -40,7 +40,7 @@ service Register {
     rpc doNetworkAddressRegister (NetAddresses) returns (NetAddressMapping) {
     }
 
-    rpc doServiceAndNetworkAddressMappingRegister (ServiceAndNetworkAddressMappings) returns(Commands) {
+    rpc doServiceAndNetworkAddressMappingRegister (ServiceAndNetworkAddressMappings) returns(skywalking.network.protocol.common.Commands) {
     }
 }
 
@@ -51,15 +51,15 @@ message Services {
 
 message Service {
     string serviceName = 1;
-    repeated KeyStringValuePair tags = 3;
-    repeated KeyStringValuePair properties = 4;
+    repeated skywalking.network.protocol.common.KeyStringValuePair tags = 3;
+    repeated skywalking.network.protocol.common.KeyStringValuePair properties = 4;
     // Type of this register service.
     // NULL means type=normal, such as all services before the 7.0.0.
-    ServiceType type = 5;
+    skywalking.network.protocol.common.ServiceType type = 5;
 }
 
 message ServiceRegisterMapping {
-    repeated KeyIntValuePair services = 1;
+    repeated skywalking.network.protocol.common.KeyIntValuePair services = 1;
 }
 
 // Service Instance register
@@ -71,12 +71,12 @@ message ServiceInstance {
     int32 serviceId = 1;
     string instanceUUID = 2;
     int64 time = 3;
-    repeated KeyStringValuePair tags = 4;
-    repeated KeyStringValuePair properties = 5;
+    repeated skywalking.network.protocol.common.KeyStringValuePair tags = 4;
+    repeated skywalking.network.protocol.common.KeyStringValuePair properties = 5;
 }
 
 message ServiceInstanceRegisterMapping {
-    repeated KeyIntValuePair serviceInstances = 1;
+    repeated skywalking.network.protocol.common.KeyIntValuePair serviceInstances = 1;
 }
 
 // Network address register
@@ -88,7 +88,7 @@ message NetAddresses {
 }
 
 message NetAddressMapping {
-    repeated KeyIntValuePair addressIds = 1;
+    repeated skywalking.network.protocol.common.KeyIntValuePair addressIds = 1;
 }
 
 // Endpoints register
@@ -99,11 +99,11 @@ message Endpoints {
 message Endpoint {
     int32 serviceId = 1;
     string endpointName = 2;
-    repeated KeyStringValuePair tags = 3;
-    repeated KeyStringValuePair properties = 4;
+    repeated skywalking.network.protocol.common.KeyStringValuePair tags = 3;
+    repeated skywalking.network.protocol.common.KeyStringValuePair properties = 4;
     // For endpoint
     // from DetectPoint is either `client` or `server`. No chance to be `proxy`.
-    DetectPoint from = 5;
+    skywalking.network.protocol.common.DetectPoint from = 5;
 }
 
 message EndpointMapping {
@@ -114,7 +114,7 @@ message EndpointMappingElement {
     int32 serviceId = 1;
     string endpointName = 2;
     int32 endpointId = 3;
-    DetectPoint from = 4;
+    skywalking.network.protocol.common.DetectPoint from = 4;
 }
 
 message ServiceAndNetworkAddressMappings {

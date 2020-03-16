@@ -30,15 +30,15 @@ import "common/trace-common.proto";
 service ProfileTask {
 
     // query all sniffer need to execute profile task commands
-    rpc getProfileTaskCommands (ProfileTaskCommandQuery) returns (Commands) {
+    rpc getProfileTaskCommands (ProfileTaskCommandQuery) returns (skywalking.network.protocol.common.Commands) {
     }
 
     // collect dumped thread snapshot
-    rpc collectSnapshot (stream ThreadSnapshot) returns (Commands) {
+    rpc collectSnapshot (stream ThreadSnapshot) returns (skywalking.network.protocol.common.Commands) {
     }
 
     // report profiling task finished
-    rpc reportTaskFinish (ProfileTaskFinishReport) returns (Commands) {
+    rpc reportTaskFinish (ProfileTaskFinishReport) returns (skywalking.network.protocol.common.Commands) {
     }
 
 }
@@ -57,7 +57,7 @@ message ThreadSnapshot {
     // profile task id
     string taskId = 1;
     // dumped segment id
-    UniqueId traceSegmentId = 2;
+    skywalking.network.protocol.common.UniqueId traceSegmentId = 2;
     // dump timestamp
     int64 time = 3;
     // snapshot dump sequence, start with zero
