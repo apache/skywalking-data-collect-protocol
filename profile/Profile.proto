@@ -23,6 +23,7 @@ package skywalking.network.protocol.agent.profile;
 option java_multiple_files = true;
 option java_package = "org.apache.skywalking.apm.network.language.profile";
 option csharp_namespace = "SkyWalking.NetworkProtocol";
+option go_package = "agent/pb/language/profile";
 
 import "common/common.proto";
 import "common/trace-common.proto";

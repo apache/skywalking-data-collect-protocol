@@ -22,6 +22,7 @@ package skywalking.network.protocol.servicemesh;
 
 option java_multiple_files = true;
 option java_package = "org.apache.skywalking.apm.network.servicemesh";
+option go_package = "agent/pb/servicemesh";
 
 import "common/common.proto";
 

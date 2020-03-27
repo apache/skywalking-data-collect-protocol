@@ -23,6 +23,7 @@ package skywalking.network.protocol.common;
 option java_multiple_files = true;
 option java_package = "org.apache.skywalking.apm.network.common";
 option csharp_namespace = "SkyWalking.NetworkProtocol";
+option go_package = "agent/pb/common";
 
 message KeyStringValuePair {
     string key = 1;

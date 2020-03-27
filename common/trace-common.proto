@@ -23,6 +23,7 @@ package skywalking.network.protocol.common;
 option java_multiple_files = true;
 option java_package = "org.apache.skywalking.apm.network.language.agent";
 option csharp_namespace = "SkyWalking.NetworkProtocol";
+option go_package = "agent/pb/language/agent";
 
 message UpstreamSegment {
     repeated UniqueId globalTraceIds = 1;
