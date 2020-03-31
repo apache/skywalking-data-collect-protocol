@@ -42,8 +42,8 @@ service ProfileTask {
 
 message ProfileTaskCommandQuery {
     // current sniffer information
-    int32 serviceId = 1;
-    int32 instanceId = 2;
+    string service = 1;
+    string serviceInstance = 2;
 
     // last command timestamp
     int64 lastCommandTime = 3;
@@ -71,8 +71,8 @@ message ThreadStack {
 // profile task finished report
 message ProfileTaskFinishReport {
     // current sniffer information
-    int32 serviceId = 1;
-    int32 instanceId = 2;
+    string service = 1;
+    string serviceInstance = 2;
 
     // profile task
     string taskId = 3;
