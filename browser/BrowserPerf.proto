@@ -21,7 +21,7 @@ syntax = "proto3";
 option java_multiple_files = true;
 option java_package = "org.apache.skywalking.apm.network.language.agent";
 
-import "common/common.proto";
+import "common/Common.proto";
 
 // Collect performance raw data from browser.
 service BrowserPerfService {

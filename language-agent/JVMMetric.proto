@@ -19,10 +19,21 @@
 syntax = "proto3";
 
 option java_multiple_files = true;
-option java_package = "org.apache.skywalking.apm.network.language.agent";
+option java_package = "org.apache.skywalking.apm.network.language.agent.v3";
 option csharp_namespace = "SkyWalking.NetworkProtocol";
 
-import "common/common.proto";
+import "common/Common.proto";
+
+service JVMMetricReportService {
+    rpc collect (JVMMetricCollection) returns (Commands) {
+    }
+}
+
+message JVMMetricCollection {
+    repeated JVMMetric metrics = 1;
+    string service = 2;
+    string serviceInstance = 3;
+}
 
 message JVMMetric {
     int64 time = 1;
@@ -45,7 +56,7 @@ message MemoryPool {
     int64 init = 2;
     int64 max = 3;
     int64 used = 4;
-    int64 commited = 5;
+    int64 committed = 5;
 }
 
 enum PoolType {
@@ -67,3 +78,4 @@ enum GCPhrase {
     NEW = 0;
     OLD = 1;
 }
+

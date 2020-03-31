@@ -22,8 +22,7 @@ option java_multiple_files = true;
 option java_package = "org.apache.skywalking.apm.network.language.profile";
 option csharp_namespace = "SkyWalking.NetworkProtocol";
 
-import "common/common.proto";
-import "common/trace-common.proto";
+import "common/Common.proto";
 
 service ProfileTask {
 
@@ -55,7 +54,7 @@ message ThreadSnapshot {
     // profile task id
     string taskId = 1;
     // dumped segment id
-    UniqueId traceSegmentId = 2;
+    string traceSegmentId = 2;
     // dump timestamp
     int64 time = 3;
     // snapshot dump sequence, start with zero
