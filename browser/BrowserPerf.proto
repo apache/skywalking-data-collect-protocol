@@ -18,8 +18,6 @@
 
 syntax = "proto3";
 
-package skywalking.network.protocol.browser;
-
 option java_multiple_files = true;
 option java_package = "org.apache.skywalking.apm.network.language.agent";
 
@@ -29,56 +27,54 @@ import "common/common.proto";
 service BrowserPerfService {
 
     // report once per page
-    rpc collectPerfData (BrowserPerfData) returns (skywalking.network.protocol.common.Commands) {
+    rpc collectPerfData (BrowserPerfData) returns (Commands) {
     }
 
     // report one or more error logs for pages, could report multiple times.
-    rpc collectErrorLogs (stream BrowserErrorLog) returns (skywalking.network.protocol.common.Commands) {
+    rpc collectErrorLogs (stream BrowserErrorLog) returns (Commands) {
     }
 }
 
 message BrowserPerfData {
-    int32 serviceId = 1;
+    string service = 1;
     // Service version in browser is the Instance concept in the backend.
-    int32 serviceVersionId = 2;
+    string serviceVersion = 2;
     // Perf data time
     int64 time = 3;
     // Page path in browser is the endpoint concept in the backend
     // Page path in the browser, mostly it is URI, without parameter
     string pagePath = 4;
-    int32 pagePathId = 5;
     // Unit of all time related field should be `ms`.
-    int32 redirectTime = 6;
-    int32 dnsTime = 7;
-    int32 reqTime = 8;
+    int32 redirectTime = 5;
+    int32 dnsTime = 6;
+    int32 reqTime = 7;
     // analysis dom tree time
-    int32 domAnalysisTime = 9;
-    int32 domReadyTime = 10;
+    int32 domAnalysisTime = 8;
+    int32 domReadyTime = 9;
     // page blank time
-    int32 blankTime = 11;
+    int32 blankTime = 10;
 }
 
 message BrowserErrorLog {
     // UUID
     string uniqueId = 1;
-    int32 serviceId = 2;
+    string service = 2;
     // Service version in browser is the Instance concept in the backend.
-    int32 serviceVersionId = 3;
+    string serviceVersion = 3;
     // Error log time
     int64 time = 4;
     // Page path in browser is the endpoint concept in the backend
     // Page path in the browser, mostly it is URI, without parameter
     string pagePath = 5;
-    int32 pagePathId = 6;
-    ErrorCategory category = 7;
-    string grade = 8;
-    string message = 9;
-    int32 line = 10;
-    int32 col = 11;
-    string stack = 12;
-    string errorUrl = 13;
+    ErrorCategory category = 6;
+    string grade = 7;
+    string message = 8;
+    int32 line = 9;
+    int32 col = 10;
+    string stack = 11;
+    string errorUrl = 12;
     // Then the PV with error is only calculated when firstReportedError is true.
-    bool firstReportedError = 14;
+    bool firstReportedError = 13;
 }
 
 enum ErrorCategory {

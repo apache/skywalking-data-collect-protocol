@@ -18,37 +18,39 @@
 
 syntax = "proto3";
 
-package skywalking.network.protocol.common;
-
 option java_multiple_files = true;
-option java_package = "org.apache.skywalking.apm.network.language.agent";
+option java_package = "org.apache.skywalking.apm.network.language.agent.v3";
 option csharp_namespace = "SkyWalking.NetworkProtocol";
 
-message UpstreamSegment {
-    repeated UniqueId globalTraceIds = 1;
-    bytes segment = 2; // the byte array of TraceSegmentObject
+import "common/Common.proto";
+
+service CLRMetricReportService {
+    rpc collect (CLRMetricCollection) returns (Commands) {
+    }
 }
 
-enum SpanType {
-    Entry = 0;
-    Exit = 1;
-    Local = 2;
+message CLRMetricCollection {
+    repeated CLRMetric metrics = 1;
+    int32 serviceInstanceId = 2;
 }
 
-message UniqueId {
-    repeated int64 idParts = 1;
+message CLRMetric {
+    int64 time = 1;
+    CPU cpu = 2;
+    ClrGC gc = 3;
+    ClrThread thread = 4;
 }
 
-enum RefType {
-    CrossProcess = 0;
-    CrossThread = 1;
+message ClrGC {
+    int64 Gen0CollectCount = 1;
+    int64 Gen1CollectCount = 2;
+    int64 Gen2CollectCount = 3;
+    int64 HeapMemory = 4;
 }
 
-enum SpanLayer {
-    Unknown = 0;
-    Database = 1;
-    RPCFramework = 2;
-    Http = 3;
-    MQ = 4;
-    Cache = 5;
+message ClrThread {
+    int32 AvailableCompletionPortThreads = 1;
+    int32 AvailableWorkerThreads = 2;
+    int32 MaxCompletionPortThreads = 3;
+    int32 MaxWorkerThreads = 4;
 }
