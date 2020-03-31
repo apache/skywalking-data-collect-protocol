@@ -32,19 +32,15 @@ message ServiceMeshMetric {
     int64 startTime = 1;
     int64 endTime = 2;
     string sourceServiceName = 3;
-    int32 sourceServiceId = 4;
-    string sourceServiceInstance = 5;
-    int32 sourceServiceInstanceId = 6;
-    string destServiceName = 7;
-    int32 destServiceId = 8;
-    string destServiceInstance = 9;
-    int32 destServiceInstanceId = 10;
-    string endpoint = 11;
-    int32 latency = 12;
-    int32 responseCode = 13;
-    bool status = 14;
-    Protocol protocol = 15;
-    DetectPoint detectPoint = 16;
+    string sourceServiceInstance = 4;
+    string destServiceName = 5;
+    string destServiceInstance = 6;
+    string endpoint = 7;
+    int32 latency = 8;
+    int32 responseCode = 9;
+    bool status = 10;
+    Protocol protocol = 11;
+    DetectPoint detectPoint = 12;
 }
 
 enum Protocol {
