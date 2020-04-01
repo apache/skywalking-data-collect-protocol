@@ -64,6 +64,7 @@ message SpanObject {
     bool isError = 12;
     repeated KeyStringValuePair tags = 13;
     repeated Log logs = 14;
+    bool skipAnalysis = 15;
 }
 
 message Log {
