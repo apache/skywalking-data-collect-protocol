@@ -61,11 +61,10 @@ message SpanObject {
     SpanType spanType = 8;
     SpanLayer spanLayer = 9;
     int32 componentId = 10;
-    string component = 11;
-    bool isError = 12;
-    repeated KeyStringValuePair tags = 13;
-    repeated Log logs = 14;
-    bool skipAnalysis = 15;
+    bool isError = 11;
+    repeated KeyStringValuePair tags = 12;
+    repeated Log logs = 13;
+    bool skipAnalysis = 14;
 }
 
 message Log {
