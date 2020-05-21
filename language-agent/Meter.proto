@@ -24,17 +24,18 @@ option java_package = "org.apache.skywalking.apm.network.language.agent.v3";
 import "common/Common.proto";
 
 service MeterReportService {
+    // Meter data is reported in a certain period. The agent/SDK should report all collected metrics in this period through one stream.
     rpc collect (stream MeterData) returns (Commands) {
     }
 }
 
-// Label in the meter
+// Label of the meter
 message Label {
     string name = 1;
     string value = 2;
 }
 
-// Work for histogram, defined the bucket
+// The histogram definition
 message MeterBucketValue {
     int32 bucket = 1;
     int64 count = 2;
