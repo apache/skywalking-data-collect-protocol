@@ -1,0 +1,76 @@
+/*
+ * Licensed to the Apache Software Foundation (ASF) under one or more
+ * contributor license agreements.  See the NOTICE file distributed with
+ * this work for additional information regarding copyright ownership.
+ * The ASF licenses this file to You under the Apache License, Version 2.0
+ * (the "License"); you may not use this file except in compliance with
+ * the License.  You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
+
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "org.apache.skywalking.apm.network.language.agent.v3";
+
+import "common/Common.proto";
+
+service MeterReportService {
+    rpc collect (stream MeterData) returns (Commands) {
+    }
+}
+
+// Label in the meter
+message Label {
+    string name = 1;
+    string value = 2;
+}
+
+// Work for histogram, defined the bucket
+message MeterBucketValue {
+    int32 bucket = 1;
+    int64 count = 2;
+}
+
+// Meter single value
+message MeterSingleValue {
+    // meter name
+    string name = 1;
+    // labels
+    repeated Label labels = 2;
+    // single value
+    int64 value = 3;
+}
+
+// Histogram
+message MeterHistogram {
+    // meter name
+    string name = 1;
+    // labels
+    repeated Label labels = 2;
+    // customize the buckets
+    repeated MeterBucketValue values = 3;
+}
+
+// single meter data, if the same metrics have a different label, they will separate.
+message MeterData {
+    // only transform single one
+    oneof metric {
+        MeterSingleValue singleValue = 1;
+        MeterHistogram histogram = 2;
+    }
+    // current service name, set value when fist collect stream data
+    string service = 3;
+    // current service instance name, set value when fist collect stream data
+    string serviceInstance = 4;
+    // send meter timestamp, set value when fist collect stream data
+    int64 timestamp = 5;
+}
