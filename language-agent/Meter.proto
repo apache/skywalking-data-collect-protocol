@@ -35,7 +35,7 @@ message Label {
     string value = 2;
 }
 
-// The histogram definition
+// The histogram element definition. It includes the bucket lower boundary and the count in the bucket.
 message MeterBucketValue {
     int32 bucket = 1;
     int64 count = 2;
@@ -43,35 +43,35 @@ message MeterBucketValue {
 
 // Meter single value
 message MeterSingleValue {
-    // meter name
+    // Meter name
     string name = 1;
-    // labels
+    // Labels
     repeated Label labels = 2;
-    // single value
+    // Single value
     int64 value = 3;
 }
 
 // Histogram
 message MeterHistogram {
-    // meter name
+    // Meter name
     string name = 1;
-    // labels
+    // Labels
     repeated Label labels = 2;
-    // customize the buckets
+    // Customize the buckets
     repeated MeterBucketValue values = 3;
 }
 
-// single meter data, if the same metrics have a different label, they will separate.
+// Single meter data, if the same metrics have a different label, they will separate.
 message MeterData {
-    // only transform single one
+    // Meter data could be a single value or histogram.
     oneof metric {
         MeterSingleValue singleValue = 1;
         MeterHistogram histogram = 2;
     }
-    // current service name, set value when fist collect stream data
+    // Service name, be set value in the first element in the stream-call.
     string service = 3;
-    // current service instance name, set value when fist collect stream data
+    // Service instance name, be set value in the first element in the stream-call.
     string serviceInstance = 4;
-    // send meter timestamp, set value when fist collect stream data
+    // Meter data report time, be set value in the first element in the stream-call.
     int64 timestamp = 5;
 }
