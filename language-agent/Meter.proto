@@ -37,6 +37,10 @@ message Label {
 
 // The histogram element definition. It includes the bucket lower boundary and the count in the bucket.
 message MeterBucketValue {
+    // The value represents the min value of the bucket,
+    // the  upper boundary is determined by next MeterBucketValue$bucket,
+    // if it doesn't exist, the upper boundary is positive infinity.
+    // Also, could use Int32.MIN_VALUE to represent negative infinity.
     int32 bucket = 1;
     int64 count = 2;
 }
