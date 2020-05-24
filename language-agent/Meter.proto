@@ -41,7 +41,7 @@ message MeterBucketValue {
     // the  upper boundary is determined by next MeterBucketValue$bucket,
     // if it doesn't exist, the upper boundary is positive infinity.
     // Also, could use Int32.MIN_VALUE to represent negative infinity.
-    int32 bucket = 1;
+    double bucket = 1;
     int64 count = 2;
 }
 
@@ -52,7 +52,7 @@ message MeterSingleValue {
     // Labels
     repeated Label labels = 2;
     // Single value
-    int64 value = 3;
+    double value = 3;
 }
 
 // Histogram
