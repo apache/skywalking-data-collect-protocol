@@ -82,8 +82,8 @@ enum GCPhrase {
 }
 
 message Thread {
-  int32 liveCount = 1;
-  int32 daemonCount = 2;
-  int32 peakCount = 3;
+  int64 liveCount = 1;
+  int64 daemonCount = 2;
+  int64 peakCount = 3;
 }
 
