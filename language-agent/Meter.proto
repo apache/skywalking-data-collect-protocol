@@ -79,3 +79,7 @@ message MeterData {
     // Meter data report time, be set value in the first element in the stream-call.
     int64 timestamp = 5;
 }
+
+message MeterDataCollection {
+    repeated MeterData meterData = 1;
+}
