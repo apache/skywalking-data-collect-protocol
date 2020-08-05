@@ -25,13 +25,18 @@ option go_package = "skywalking/network/servicemesh/v3";
 
 import "common/Common.proto";
 
+// Define metrics report service. The metrics format is typically representing the data model collected in the service mesh case.
 service ServiceMeshMetricService {
     rpc collect(stream ServiceMeshMetric) returns (MeshProbeDownstream) {
     }
 }
 
 message ServiceMeshMetric {
+    // Start timestamp in milliseconds of this RPC,
+    // measured between the current time and midnight, January 1, 1970 UTC.
     int64 startTime = 1;
+    // End timestamp in milliseconds of this RPC,
+    // measured between the current time and midnight, January 1, 1970 UTC.
     int64 endTime = 2;
     string sourceServiceName = 3;
     string sourceServiceInstance = 4;

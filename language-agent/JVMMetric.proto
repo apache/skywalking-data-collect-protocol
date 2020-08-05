@@ -25,6 +25,7 @@ option go_package = "skywalking/network/language/agent/v3";
 
 import "common/Common.proto";
 
+// Define the JVM metrics report service.
 service JVMMetricReportService {
     rpc collect (JVMMetricCollection) returns (Commands) {
     }
