@@ -143,6 +143,9 @@ message SpanObject {
     bool isError = 11;
     // String key, String value pair.
     // Tags provides more informance, includes parameters.
+    //
+    // In the OAP backend analysis, some special tag or tag combination could provide other advanced features.
+    // https://github.com/apache/skywalking/blob/master/docs/en/guides/Java-Plugin-Development-Guide.md#special-span-tags
     repeated KeyStringValuePair tags = 12;
     // String key, String value pair with an accurate timestamp.
     // Logging some events happening in the context of the span duration.
