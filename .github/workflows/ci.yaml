@@ -23,10 +23,6 @@ on:
       - master
     tags:
       - 'v*'
-
-env:
-
-
 jobs:
   CI:
     runs-on: ubuntu-18.04
