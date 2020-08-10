@@ -41,20 +41,39 @@ message BrowserPerfData {
     string service = 1;
     // Service version in browser is the Instance concept in the backend.
     string serviceVersion = 2;
-    // Perf data time
+    // Perf data time, set by the backend side.
     int64 time = 3;
     // Page path in browser is the endpoint concept in the backend
     // Page path in the browser, mostly it is URI, without parameter
     string pagePath = 4;
     // Unit of all time related field should be `ms`.
     int32 redirectTime = 5;
+    // DNS query time
     int32 dnsTime = 6;
-    int32 reqTime = 7;
-    // analysis dom tree time
-    int32 domAnalysisTime = 8;
-    int32 domReadyTime = 9;
-    // page blank time
-    int32 blankTime = 10;
+    // Time to first Byte
+    int32 ttfbTime = 7;
+    //  TCP connection time
+    int32 tcpTime = 8;
+    // Content transfer time
+    int32 transTime = 9;
+    // Dom parsing time
+    int32 domAnalysisTime = 10;
+    // First paint time or blank screen time
+    int32 fptTime = 11;
+    // Dom ready time
+    int32 domReadyTime = 12;
+    // Page full load time
+    int32 loadPageTime = 13;
+    // Synchronous load resources in the page
+    int32 resTime = 14;
+    // Only valid for HTTPS
+    int32 sslTime = 15;
+    // Time to interact
+    int32 ttlTime = 16;
+    // First pack time
+    int32 firstPackTime = 17;
+    // First Meaningful Paint
+    int32 fmpTime = 18;
 }
 
 message BrowserErrorLog {
@@ -63,7 +82,7 @@ message BrowserErrorLog {
     string service = 2;
     // Service version in browser is the Instance concept in the backend.
     string serviceVersion = 3;
-    // Error log time
+    // Error log time, set by the backend side.
     int64 time = 4;
     // Page path in browser is the endpoint concept in the backend
     // Page path in the browser, mostly it is URI, without parameter
