@@ -48,6 +48,7 @@ message ServiceMeshMetric {
     bool status = 10;
     Protocol protocol = 11;
     DetectPoint detectPoint = 12;
+    string tlsMode = 13;
 }
 
 enum Protocol {
