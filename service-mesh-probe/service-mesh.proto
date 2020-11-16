@@ -45,10 +45,15 @@ message ServiceMeshMetric {
     string endpoint = 7;
     int32 latency = 8;
     int32 responseCode = 9;
+    // Status represents the response status of this calling.
     bool status = 10;
     Protocol protocol = 11;
     DetectPoint detectPoint = 12;
+    // NONE, mTLS, or TLS
     string tlsMode = 13;
+    // The sidecar/proxy internal error code, the value bases on the implementation.
+    // The envoy internal error codes are listed here, https://www.envoyproxy.io/docs/envoy/latest/api-v2/data/accesslog/v2/accesslog.proto#data-accesslog-v2-responseflags
+    string internalErrorCode = 14;
 }
 
 enum Protocol {
