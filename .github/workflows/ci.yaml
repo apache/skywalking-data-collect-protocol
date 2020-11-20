@@ -31,5 +31,5 @@ jobs:
       - uses: actions/checkout@v2
         with:
           submodules: true
-      - name: 'echo'
-        run: echo 'apache skywalking'
+      - name: Check License Headers
+        run: python3 tools/check-license-header.py .
