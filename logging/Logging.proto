@@ -37,7 +37,7 @@ service LogReportService {
 // Log data is collected through file scratcher of agent.
 // Natively, Satellite provides various ways to collect logs.
 message LogData {
-    // [Optional] The timestamp of the log.
+    // [Optional] The timestamp of the log, in millisecond.
     // If not set, OAP server would use the received timestamp as log's timestamp.
     int64 timestamp = 1;
     // [Required] **Service**. Represents a set/group of workloads which provide the same behaviours for incoming requests.
