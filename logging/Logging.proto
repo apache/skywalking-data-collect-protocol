@@ -61,6 +61,8 @@ message LogData {
     LogDataBody body = 5;
     // [Optional] Logs with trace context
     TraceContext traceContext = 6;
+    // [Optional] The available tags. OAP server could provide search/analysis capabilities base on these.
+    repeated KeyStringValuePair tags = 7;
 }
 
 // The content of the log data
@@ -93,15 +95,13 @@ message YAMLLog {
 
 // Logs with trace context, represent agent system has injects context(IDs) into log text.
 message TraceContext {
-    // [Optional] The available tags. OAP server could provide search/analysis capabilities base on these.
-    repeated KeyStringValuePair tags = 7;
     // [Optional] A string id represents the whole trace.
-    string traceId = 8;
+    string traceId = 1;
     // [Optional] A unique id represents this segment. Other segments could use this id to reference as a child segment.
-    string traceSegmentId = 9;
+    string traceSegmentId = 2;
     // [Optional] The number id of the span. Should be unique in the whole segment.
     // Starting at 0.
-    int32 spanId = 10;
+    int32 spanId = 3;
 }
 
 
