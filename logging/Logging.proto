@@ -37,36 +37,39 @@ service LogReportService {
 // Log data is collected through file scratcher of agent.
 // Natively, Satellite provides various ways to collect logs.
 message LogData {
+    // [Optional] The timestamp of the log.
+    // If not set, OAP server would use the received timestamp as log's timestamp.
+    int64 timestamp = 1;
     // [Required] **Service**. Represents a set/group of workloads which provide the same behaviours for incoming requests.
     //
     // The logic name represents the service. This would show as a separate node in the topology.
     // The metrics analyzed from the spans, would be aggregated for this entity as the service level.
     //
     // If this is not the first element of the streaming, use the previous not-null name as the service name.
-    string service = 1;
+    string service = 2;
     // [Optional] **Service Instance**. Each individual workload in the Service group is known as an instance. Like `pods` in Kubernetes, it
     // doesn't need to be a single OS process, however, if you are using instrument agents, an instance is actually a real OS process.
     //
     // The logic name represents the service instance. This would show as a separate node in the instance relationship.
     // The metrics analyzed from the spans, would be aggregated for this entity as the service instance level.
-    string serviceInstance = 2;
+    string serviceInstance =3;
     // [Optional] **Endpoint**. A path in a service for incoming requests, such as an HTTP URI path or a gRPC service class + method signature.
     //
     // The logic name represents the endpoint, which logs belong.
-    string endpoint = 3;
+    string endpoint = 4;
     // [Required] The literal text of the logs.
-    string log = 4;
+    string log = 5;
     // [Optional] The format of [log = 4], default value is text.
-    LogFormat format = 5;
+    LogFormat format = 6;
     // [Optional] The available tags. OAP server could provide search/analysis capabilities base on these.
-    repeated KeyStringValuePair tags = 6;
+    repeated KeyStringValuePair tags = 7;
     // [Optional] A string id represents the whole trace.
-    string traceId = 7;
+    string traceId = 8;
     // [Optional] A unique id represents this segment. Other segments could use this id to reference as a child segment.
-    string traceSegmentId = 8;
+    string traceSegmentId = 9;
     // [Optional] The number id of the span. Should be unique in the whole segment.
     // Starting at 0.
-    int32 spanId = 9;
+    int32 spanId = 10;
 }
 
 // The format of log
