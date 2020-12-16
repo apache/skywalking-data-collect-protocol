@@ -39,4 +39,5 @@ cc_grpc_library(
   srcs = [":tracing_protocol_proto_lib"],
   deps = [":tracing_protocol_cc_proto"],
   grpc_only = True,
+  generate_mocks = True,
 )
