@@ -18,65 +18,27 @@
 
 syntax = "proto3";
 
-package org.apache.skywalking.v3;
-
 option java_multiple_files = true;
-option java_package = "org.apache.skywalking.apm.network.language.profile.v3";
+option java_package = "org.apache.skywalking.apm.network.language.profile.v3.compat";
 option csharp_namespace = "SkyWalking.NetworkProtocol.V3";
 option go_package = "skywalking/network/language/profile/v3";
+option deprecated = true;
 
 import "common/Common.proto";
+import "profile/Profile.proto";
 
 service ProfileTask {
 
     // query all sniffer need to execute profile task commands
-    rpc getProfileTaskCommands (ProfileTaskCommandQuery) returns (Commands) {
+    rpc getProfileTaskCommands (org.apache.skywalking.v3.ProfileTaskCommandQuery) returns (org.apache.skywalking.v3.Commands) {
     }
 
     // collect dumped thread snapshot
-    rpc collectSnapshot (stream ThreadSnapshot) returns (Commands) {
+    rpc collectSnapshot (stream org.apache.skywalking.v3.ThreadSnapshot) returns (org.apache.skywalking.v3.Commands) {
     }
 
     // report profiling task finished
-    rpc reportTaskFinish (ProfileTaskFinishReport) returns (Commands) {
+    rpc reportTaskFinish (org.apache.skywalking.v3.ProfileTaskFinishReport) returns (org.apache.skywalking.v3.Commands) {
     }
 
-}
-
-message ProfileTaskCommandQuery {
-    // current sniffer information
-    string service = 1;
-    string serviceInstance = 2;
-
-    // last command timestamp
-    int64 lastCommandTime = 3;
-}
-
-// dumped thread snapshot
-message ThreadSnapshot {
-    // profile task id
-    string taskId = 1;
-    // dumped segment id
-    string traceSegmentId = 2;
-    // dump timestamp
-    int64 time = 3;
-    // snapshot dump sequence, start with zero
-    int32 sequence = 4;
-    // snapshot stack
-    ThreadStack stack = 5;
-}
-
-message ThreadStack {
-    // stack code signature list
-    repeated string codeSignatures = 1;
-}
-
-// profile task finished report
-message ProfileTaskFinishReport {
-    // current sniffer information
-    string service = 1;
-    string serviceInstance = 2;
-
-    // profile task
-    string taskId = 3;
 }

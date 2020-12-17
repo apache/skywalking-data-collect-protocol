@@ -18,6 +18,8 @@
 
 syntax = "proto3";
 
+package org.apache.skywalking.v3;
+
 option java_multiple_files = true;
 option java_package = "org.apache.skywalking.apm.network.language.agent.v3";
 option csharp_namespace = "SkyWalking.NetworkProtocol.V3";
@@ -44,7 +46,7 @@ service TraceSegmentReportService {
 
 // The segment is a collection of spans. It includes all collected spans in a simple one request context, such as a HTTP request process.
 //
-// We recommend the agent/SDK report all tracked data of one request once for all, such as, 
+// We recommend the agent/SDK report all tracked data of one request once for all, such as,
 // typically, such as in Java, one segment represent all tracked operations(spans) of one request context in the same thread.
 // At the same time, in some language there is not a clear concept like golang, it could represent all tracked operations of one request context.
 message SegmentObject {
@@ -55,11 +57,11 @@ message SegmentObject {
     // Span collections included in this segment.
     repeated SpanObject spans = 3;
     // **Service**. Represents a set/group of workloads which provide the same behaviours for incoming requests.
-    // 
+    //
     // The logic name represents the service. This would show as a separate node in the topology.
     // The metrics analyzed from the spans, would be aggregated for this entity as the service level.
     string service = 4;
-    // **Service Instance**. Each individual workload in the Service group is known as an instance. Like `pods` in Kubernetes, it 
+    // **Service Instance**. Each individual workload in the Service group is known as an instance. Like `pods` in Kubernetes, it
     // doesn't need to be a single OS process, however, if you are using instrument agents, an instance is actually a real OS process.
     //
     // The logic name represents the service instance. This would show as a separate node in the instance relationship.
@@ -67,7 +69,7 @@ message SegmentObject {
     string serviceInstance = 5;
     // Whether the segment includes all tracked spans.
     // In the production environment tracked, some tasks could include too many spans for one request context, such as a batch update for a cache, or an async job.
-    // The agent/SDK could optimize or ignore some tracked spans for better performance. 
+    // The agent/SDK could optimize or ignore some tracked spans for better performance.
     // In this case, the value should be flagged as TRUE.
     bool isSizeLimited = 6;
 }
@@ -84,10 +86,10 @@ message SegmentReference {
     string parentTraceSegmentId = 3;
     // The span id in the parent trace segment.
     int32 parentSpanId = 4;
-    // The service logic name of the parent segment. 
+    // The service logic name of the parent segment.
     // If refType == CrossThread, this name is as same as the trace segment.
     string parentService = 5;
-    // The service logic name instance of the parent segment. 
+    // The service logic name instance of the parent segment.
     // If refType == CrossThread, this name is as same as the trace segment.
     string parentServiceInstance = 6;
     // The endpoint name of the parent segment.
@@ -120,7 +122,7 @@ message SpanObject {
     // End timestamp in milliseconds of this span,
     // measured between the current time and midnight, January 1, 1970 UTC.
     int64 endTime = 4;
-    // <Optional> 
+    // <Optional>
     // In the across thread and across process, these references targeting the parent segments.
     // The references usually have only one element, but in batch consumer case, such as in MQ or async batch process, it could be multiple.
     repeated SegmentReference refs = 5;
@@ -129,7 +131,7 @@ message SpanObject {
     // We don't recommend to include the parameter, such as HTTP request parameters, as a part of the operation, especially this is the name of the entry span.
     // All statistic for the endpoints are aggregated base on this name. Those parameters should be added in the tags if necessary.
     // If in some cases, it have to be a part of the operation name,
-    // users should use the Group Parameterized Endpoints capability at the backend to get the meaningful metrics. 
+    // users should use the Group Parameterized Endpoints capability at the backend to get the meaningful metrics.
     // Read https://github.com/apache/skywalking/blob/master/docs/en/setup/backend/endpoint-grouping-rules.md
     string operationName = 6;
     // Remote address of the peer in RPC/MQ case.
@@ -162,7 +164,7 @@ message SpanObject {
     repeated Log logs = 13;
     // Force the backend don't do analysis, if the value is TRUE.
     // The backend has its own configurations to follow or override this.
-    // 
+    //
     // Use this mostly because the agent/SDK could know more context of the service role.
     bool skipAnalysis = 14;
 }
@@ -195,7 +197,7 @@ enum RefType {
     // Map to the reference targeting the segment in another OS process.
     CrossProcess = 0;
     // Map to the reference targeting the segment in the same process of the current one, just across thread.
-    // This is only used when the coding language has the thread concept. 
+    // This is only used when the coding language has the thread concept.
     CrossThread = 1;
 }
 

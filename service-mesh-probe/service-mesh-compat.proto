@@ -18,37 +18,16 @@
 
 syntax = "proto3";
 
-package org.apache.skywalking.v3;
-
 option java_multiple_files = true;
-option java_package = "org.apache.skywalking.apm.network.common.v3";
+option java_package = "org.apache.skywalking.apm.network.servicemesh.v3.compat";
 option csharp_namespace = "SkyWalking.NetworkProtocol.V3";
-option go_package = "skywalking/network/common/v3";
+option go_package = "skywalking/network/servicemesh/v3";
+option deprecated = true;
 
-message KeyStringValuePair {
-    string key = 1;
-    string value = 2;
+import "service-mesh-probe/service-mesh.proto";
+
+// Define metrics report service. The metrics format is typically representing the data model collected in the service mesh case.
+service ServiceMeshMetricService {
+    rpc collect(stream org.apache.skywalking.v3.ServiceMeshMetric) returns (org.apache.skywalking.v3.MeshProbeDownstream) {
+    }
 }
-
-message CPU {
-    double usagePercent = 2;
-}
-
-// In most cases, detect point should be `server` or `client`.
-// Even in service mesh, this means `server`/`client` side sidecar
-// `proxy` is reserved only.
-enum DetectPoint {
-    client = 0;
-    server = 1;
-    proxy = 2;
-}
-
-message Commands {
-    repeated Command commands = 1;
-}
-
-message Command {
-    string command = 1;
-    repeated KeyStringValuePair args = 2;
-}
-
