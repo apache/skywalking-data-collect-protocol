@@ -18,37 +18,27 @@
 
 syntax = "proto3";
 
-package skywalking.v3;
-
 option java_multiple_files = true;
-option java_package = "org.apache.skywalking.apm.network.common.v3";
+option java_package = "org.apache.skywalking.apm.network.language.profile.v3.compat";
 option csharp_namespace = "SkyWalking.NetworkProtocol.V3";
-option go_package = "skywalking/network/common/v3";
+option go_package = "skywalking/network/language/profile/v3";
+option deprecated = true;
 
-message KeyStringValuePair {
-    string key = 1;
-    string value = 2;
+import "common/Common.proto";
+import "profile/Profile.proto";
+
+service ProfileTask {
+
+    // query all sniffer need to execute profile task commands
+    rpc getProfileTaskCommands (skywalking.v3.ProfileTaskCommandQuery) returns (skywalking.v3.Commands) {
+    }
+
+    // collect dumped thread snapshot
+    rpc collectSnapshot (stream skywalking.v3.ThreadSnapshot) returns (skywalking.v3.Commands) {
+    }
+
+    // report profiling task finished
+    rpc reportTaskFinish (skywalking.v3.ProfileTaskFinishReport) returns (skywalking.v3.Commands) {
+    }
+
 }
-
-message CPU {
-    double usagePercent = 2;
-}
-
-// In most cases, detect point should be `server` or `client`.
-// Even in service mesh, this means `server`/`client` side sidecar
-// `proxy` is reserved only.
-enum DetectPoint {
-    client = 0;
-    server = 1;
-    proxy = 2;
-}
-
-message Commands {
-    repeated Command commands = 1;
-}
-
-message Command {
-    string command = 1;
-    repeated KeyStringValuePair args = 2;
-}
-
