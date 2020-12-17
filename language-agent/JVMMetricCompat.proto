@@ -29,6 +29,6 @@ import "language-agent/JVMMetric.proto";
 
 // Define the JVM metrics report service.
 service JVMMetricReportService {
-    rpc collect (org.apache.skywalking.v3.JVMMetricCollection) returns (org.apache.skywalking.v3.Commands) {
+    rpc collect (skywalking.v3.JVMMetricCollection) returns (skywalking.v3.Commands) {
     }
 }

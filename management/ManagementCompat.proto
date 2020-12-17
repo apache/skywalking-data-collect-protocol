@@ -30,13 +30,13 @@ import "management/Management.proto";
 // Define the service reporting the extra information of the instance.
 service ManagementService {
     // Report custom properties of a service instance.
-    rpc reportInstanceProperties (org.apache.skywalking.v3.InstanceProperties) returns (org.apache.skywalking.v3.Commands) {
+    rpc reportInstanceProperties (skywalking.v3.InstanceProperties) returns (skywalking.v3.Commands) {
     }
 
     // Keep the instance alive in the backend analysis.
     // Only recommend to do separate keepAlive report when no trace and metrics needs to be reported.
     // Otherwise, it is duplicated.
-    rpc keepAlive (org.apache.skywalking.v3.InstancePingPkg) returns (org.apache.skywalking.v3.Commands) {
+    rpc keepAlive (skywalking.v3.InstancePingPkg) returns (skywalking.v3.Commands) {
 
     }
 }

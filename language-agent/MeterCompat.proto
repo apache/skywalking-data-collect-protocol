@@ -27,6 +27,6 @@ import "language-agent/Meter.proto";
 
 service MeterReportService {
     // Meter data is reported in a certain period. The agent/SDK should report all collected metrics in this period through one stream.
-    rpc collect (stream org.apache.skywalking.v3.MeterData) returns (org.apache.skywalking.v3.Commands) {
+    rpc collect (stream skywalking.v3.MeterData) returns (skywalking.v3.Commands) {
     }
 }

@@ -28,6 +28,6 @@ import "service-mesh-probe/service-mesh.proto";
 
 // Define metrics report service. The metrics format is typically representing the data model collected in the service mesh case.
 service ServiceMeshMetricService {
-    rpc collect(stream org.apache.skywalking.v3.ServiceMeshMetric) returns (org.apache.skywalking.v3.MeshProbeDownstream) {
+    rpc collect(stream skywalking.v3.ServiceMeshMetric) returns (skywalking.v3.MeshProbeDownstream) {
     }
 }

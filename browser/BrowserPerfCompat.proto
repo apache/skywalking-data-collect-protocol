@@ -31,10 +31,10 @@ import "browser/BrowserPerf.proto";
 service BrowserPerfService {
 
     // report once per page
-    rpc collectPerfData (org.apache.skywalking.v3.BrowserPerfData) returns (org.apache.skywalking.v3.Commands) {
+    rpc collectPerfData (skywalking.v3.BrowserPerfData) returns (skywalking.v3.Commands) {
     }
 
     // report one or more error logs for pages, could report multiple times.
-    rpc collectErrorLogs (stream org.apache.skywalking.v3.BrowserErrorLog) returns (org.apache.skywalking.v3.Commands) {
+    rpc collectErrorLogs (stream skywalking.v3.BrowserErrorLog) returns (skywalking.v3.Commands) {
     }
 }

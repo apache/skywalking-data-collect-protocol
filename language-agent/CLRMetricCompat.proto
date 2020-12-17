@@ -28,6 +28,6 @@ import "common/Common.proto";
 import "language-agent/CLRMetric.proto";
 
 service CLRMetricReportService {
-    rpc collect (org.apache.skywalking.v3.CLRMetricCollection) returns (org.apache.skywalking.v3.Commands) {
+    rpc collect (skywalking.v3.CLRMetricCollection) returns (skywalking.v3.Commands) {
     }
 }
