@@ -64,7 +64,7 @@ message LogData {
     // [Optional] Logs with trace context
     TraceContext traceContext = 6;
     // [Optional] The available tags. OAP server could provide search/analysis capabilities base on these.
-    Tags tags = 7;
+    LogTags tags = 7;
 }
 
 // The content of the log data
@@ -106,7 +106,7 @@ message TraceContext {
     int32 spanId = 3;
 }
 
-message Tags {
+message LogTags {
     // String key, String value pair.
     repeated KeyStringValuePair data = 1;
 }
