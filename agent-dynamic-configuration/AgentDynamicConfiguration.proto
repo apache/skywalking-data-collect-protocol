@@ -27,7 +27,7 @@ import "common/Common.proto";
 
 // Fetch the latest dynamic configurations of the service.
 service ConfigurationDiscoveryService {
-    rpc getAgentDynamicConfiguration (AgentDynamicConfigurationRequest) returns (Commands) {
+    rpc fetchConfigurations (ConfigurationSyncRequest) returns (Commands) {
     }
 }
 
