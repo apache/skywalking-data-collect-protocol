@@ -72,6 +72,9 @@ enum Type {
   Error = 1;
 }
 
+// If the event occurs on a service ONLY, the `service` field is mandatory, the serviceInstance field and endpoint field are optional;
+// If the event occurs on a service instance, the `service` and `serviceInstance` are mandatory and endpoint is optional;
+// If the event occurs on an endpoint, `service` and `endpoint` are mandatory, `serviceInstance` is optional;
 message Source {
   string service = 1;
   string serviceInstance = 2;
