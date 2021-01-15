@@ -25,7 +25,7 @@ option go_package = "skywalking/network/agent/configuration/v3";
 
 import "common/Common.proto";
 
-// Query current service dynamic configuration items from OAP.
+// Fetch the latest dynamic configurations of the service.
 service ConfigurationDiscoveryService {
     rpc getAgentDynamicConfiguration (AgentDynamicConfigurationRequest) returns (Commands) {
     }
