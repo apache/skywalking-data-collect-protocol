@@ -27,6 +27,14 @@ import "common/Common.proto";
 
 // Fetch the latest dynamic configurations of the service.
 service ConfigurationDiscoveryService {
+    // fetchConfigurations service requests the latest configuration.
+    // Expect command of Commands is:
+    //    command: CDS # meaning ConfigurationDiscoveryService's response
+    //    args: Include string key and string value pair.
+    //          The key depends on the agent implementation.
+    //          The value is the latest value in String value. The watcher of key owner takes the responsibility to convert it to the correct type or format.
+    //          One reserved key is `UUID`. The value would help reducing the traffic load between agent and OAP if there is no change.
+    // Commands could be empty if no change detected based on ConfigurationSyncRequest.
     rpc fetchConfigurations (ConfigurationSyncRequest) returns (Commands) {
     }
 }
@@ -35,12 +43,10 @@ message ConfigurationSyncRequest {
     // Current agent service name.
     string service = 1;
 
-    // The config UUID response from the config server side.
+    // [Optional]
+    // UUID is the unique id to represent the signature of the latest configuration.
+    // The agent usually uses its bootstrap configuration running in default, and this id could be empty when doing the 1st round sync.
+    // The agent could/is recommended to cache the UUID from the last command, and put it as the next round UUID parameter, 
+    // then the OAP only returns the empty Commands if no configuration change happenned.
     string uuid = 2;
 }
-
-// The returned command object can be deserialized into a java object, with the following attributes, uuid, service, config.
-// uuid: Is String type. If config is unchanged, then could response the same uuid, and config is not required.
-// service: Is String type. Prevent inconsistencies between the queried service and the returned service.
-// config: Is the collection type of KeyStringValuePair, Used to describe the key and value of the dynamic configuration.
-
