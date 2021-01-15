@@ -31,10 +31,16 @@ service ConfigurationDiscoveryService {
     }
 }
 
-message AgentDynamicConfigurationRequest {
+message ConfigurationSyncRequest {
     // Current agent service name.
     string service = 1;
 
     // The config UUID response from the config server side.
     string uuid = 2;
 }
+
+// The returned command object can be deserialized into a java object, with the following attributes, uuid, service, config.
+// uuid: Is String type. If config is unchanged, then could response the same uuid, and config is not required.
+// service: Is String type. Prevent inconsistencies between the queried service and the returned service.
+// config: Is the collection type of KeyStringValuePair, Used to describe the key and value of the dynamic configuration.
+
