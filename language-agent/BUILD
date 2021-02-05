@@ -41,3 +41,22 @@ cc_grpc_library(
   grpc_only = True,
   generate_mocks = True,
 )
+
+proto_library(
+  name = "configuration_discovery_service_proto_lib",
+  srcs = ["ConfigurationDiscoveryService.proto"],
+  deps = ["//common:common_protocol_proto_lib"],
+)
+
+cc_proto_library(
+  name = "configuration_discovery_service_cc_proto",
+  deps = [":configuration_discovery_service_proto_lib"],
+)
+
+cc_grpc_library(
+  name = "configuration_discovery_service_cc_grpc",
+  srcs = [":configuration_discovery_service_proto_lib"],
+  deps = [":configuration_discovery_service_cc_proto"],
+  grpc_only = True,
+  generate_mocks = True,
+)
