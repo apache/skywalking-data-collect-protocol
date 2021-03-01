@@ -1,9 +1,10 @@
 # Apache SkyWalking data collect protocol
 Apache SkyWalking typically collect data from 
-1. Tracing agent.
-1. Service mesh proxy, especially Envoy controlled by Istio.
-1. Meter data, also known pure metrics data.
-1. Logs.
+1. Traces
+2. Metrics(Meter system)
+3. Logs
+4. Command data. Push the commands to the agents from Server.
+5. Event. 
 
 This repo hosts the protocol of SkyWalking native report protocol, defined in gRPC. Read [Protocol DOC](https://github.com/apache/skywalking/blob/master/docs/en/protocols/README.md#probe-protocols) for more details
 
