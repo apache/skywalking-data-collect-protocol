@@ -63,14 +63,14 @@ message LogData {
     LogDataBody body = 5;
     // [Optional] Logs with trace context
     TraceContext traceContext = 6;
-    // [Optional] The available tags. OAP server could provide search/analysis capabilities base on these.
+    // [Optional] The available tags. OAP server could provide search/analysis capabilities based on these.
     LogTags tags = 7;
 }
 
 // The content of the log data
 message LogDataBody {
     // A type to match analyzer(s) at the OAP server.
-    // The data could be analysis at the client side, but could be partial
+    // The data could be analyzed at the client side, but could be partial
     string type = 1;
     // Content with extendable format.
     oneof content {
@@ -85,12 +85,12 @@ message TextLog {
     string text = 1;
 }
 
-// JSON formatted log. The json field represents the string could be formatted as a JSON object.
+// JSON formatted log. The json field represents the string that could be formatted as a JSON object.
 message JSONLog {
     string json = 1;
 }
 
-// YAML formatted log. The yaml field represents the string could be formatted as a YAML map.
+// YAML formatted log. The yaml field represents the string that could be formatted as a YAML map.
 message YAMLLog {
     string yaml = 1;
 }
