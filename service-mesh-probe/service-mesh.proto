@@ -61,6 +61,7 @@ message ServiceMeshMetric {
 enum Protocol {
     HTTP = 0;
     gRPC = 1;
+    TCP = 2;
 }
 
 message MeshProbeDownstream {
