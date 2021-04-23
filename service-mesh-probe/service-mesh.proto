@@ -58,7 +58,7 @@ message ServiceMeshMetric {
     string internalErrorCode = 14;
 
     // The tcp detail of the mesh metrics if it's a TCP metrics, otherwise should be empty.
-    Tcp tcp = 15;
+    TCPInfo tcp = 15;
 }
 
 enum Protocol {
@@ -67,7 +67,7 @@ enum Protocol {
     TCP = 2;
 }
 
-message Tcp {
+message TCPInfo {
     // The received data in bytes
     int64 receivedBytes = 1;
     // The sent data in bytes
