@@ -57,8 +57,8 @@ message ServiceMeshMetric {
     // The envoy internal error codes are listed here, https://www.envoyproxy.io/docs/envoy/latest/api-v2/data/accesslog/v2/accesslog.proto#data-accesslog-v2-responseflags
     string internalErrorCode = 14;
 
-    // The throughput detail of the mesh metrics.
-    Throughput throughput = 15;
+    // The tcp detail of the mesh metrics if it's a TCP metrics, otherwise should be empty.
+    Tcp tcp = 15;
 }
 
 enum Protocol {
@@ -67,11 +67,11 @@ enum Protocol {
     TCP = 2;
 }
 
-message Throughput {
+message Tcp {
     // The received data in bytes
-    int64 received = 1;
+    int64 receivedBytes = 1;
     // The sent data in bytes
-    int64 sent = 2;
+    int64 sentBytes = 2;
 }
 
 message MeshProbeDownstream {
