@@ -46,6 +46,7 @@ message JVMMetric {
     repeated MemoryPool memoryPool = 4;
     repeated GC gc = 5;
     Thread thread = 6;
+    Class clazz = 7;
 }
 
 message Memory {
@@ -85,8 +86,22 @@ enum GCPhrase {
 }
 
 message Thread {
-  int64 liveCount = 1;
-  int64 daemonCount = 2;
-  int64 peakCount = 3;
+    int64 liveCount = 1;
+    int64 daemonCount = 2;
+    int64 peakCount = 3;
+    int64 deadlocked = 4;
+    int64 monitorDeadlocked = 5;
+    int64 newThreadCount = 6;
+    int64 runnableThreadCount = 7;
+    int64 blockedThreadCount = 8;
+    int64 waitThreadCount = 9;
+    int64 timeWaitThreadCount = 10;
+    int64 terminatedThreadCount = 11;
+}
+
+message Class {
+    int64 loadedClassCount = 1;
+    int64 unloadedClassCount = 2;
+    int64 totalLoadedClassCount = 3;
 }
 
