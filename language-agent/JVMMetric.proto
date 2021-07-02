@@ -85,7 +85,7 @@ enum GCPhrase {
     OLD = 1;
 }
 
-// see: https://docs.oracle.com/javase/8/docs/api/java/lang/management/ThreadMXBean.html
+// See: https://docs.oracle.com/javase/8/docs/api/java/lang/management/ThreadMXBean.html
 message Thread {
     int64 liveCount = 1;
     int64 daemonCount = 2;
@@ -98,7 +98,7 @@ message Thread {
     int64 terminatedStateThreadCount = 9;
 }
 
-// see: https://docs.oracle.com/javase/8/docs/api/java/lang/management/ClassLoadingMXBean.html
+// See: https://docs.oracle.com/javase/8/docs/api/java/lang/management/ClassLoadingMXBean.html
 message Class {
     int64 loadedClassCount = 1;
     int64 totalUnloadedClassCount = 2;
