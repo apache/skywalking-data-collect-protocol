@@ -101,7 +101,7 @@ message Thread {
 
 message Class {
     int64 loadedClassCount = 1;
-    int64 unloadedClassCount = 2;
+    int64 totalUnloadedClassCount = 2;
     int64 totalLoadedClassCount = 3;
 }
 
