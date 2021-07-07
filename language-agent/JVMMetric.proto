@@ -90,12 +90,10 @@ message Thread {
     int64 liveCount = 1;
     int64 daemonCount = 2;
     int64 peakCount = 3;
-    int64 newStateThreadCount = 4;
-    int64 runnableStateThreadCount = 5;
-    int64 blockedStateThreadCount = 6;
-    int64 waitingStateThreadCount = 7;
-    int64 timedWaitingStateThreadCount = 8;
-    int64 terminatedStateThreadCount = 9;
+    int64 runnableStateThreadCount = 4;
+    int64 blockedStateThreadCount = 5;
+    int64 waitingStateThreadCount = 6;
+    int64 timedWaitingStateThreadCount = 7;
 }
 
 // See: https://docs.oracle.com/javase/8/docs/api/java/lang/management/ClassLoadingMXBean.html
