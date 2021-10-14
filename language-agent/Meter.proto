@@ -43,9 +43,10 @@ message MeterBucketValue {
     // The value represents the min value of the bucket,
     // the  upper boundary is determined by next MeterBucketValue$bucket,
     // if it doesn't exist, the upper boundary is positive infinity.
-    // Also, could use Int32.MIN_VALUE to represent negative infinity.
     double bucket = 1;
     int64 count = 2;
+    // If is negative infinity, the value of the bucket is invalid
+    bool isNegativeInfinity = 3;
 }
 
 // Meter single value
