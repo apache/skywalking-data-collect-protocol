@@ -26,10 +26,10 @@ on:
 jobs:
   CI:
     runs-on: ubuntu-18.04
-    timeout-minutes: 90
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v2
         with:
           submodules: true
       - name: Check License Headers
-        run: python3 tools/check-license-header.py .
+        uses: apache/skywalking-eyes@6e387ca914675222f0df405660f88bc803c297bf
