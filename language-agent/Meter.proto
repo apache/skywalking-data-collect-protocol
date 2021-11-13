@@ -31,7 +31,9 @@ service MeterReportService {
     rpc collect (stream MeterData) returns (Commands) {
     }
 
-    // It is recommended to keep the stream alive for performance considerations
+    // Reporting meter data in bulk mode as MeterDataCollection.
+    // By using this, each one in the stream would be treated as a complete input for MAL engine.
+    // Comparing to `collect (stream MeterData)`, one stream is an input data set.
     rpc collectBatch (stream MeterDataCollection) returns (Commands) {
     }
 }
