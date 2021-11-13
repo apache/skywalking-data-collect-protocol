@@ -28,12 +28,13 @@ import "common/Common.proto";
 
 service MeterReportService {
     // Meter data is reported in a certain period. The agent/SDK should report all collected metrics in this period through one stream.
+    // The whole stream is an input data set, client should onComplete the stream per report period.
     rpc collect (stream MeterData) returns (Commands) {
     }
 
     // Reporting meter data in bulk mode as MeterDataCollection.
-    // By using this, each one in the stream would be treated as a complete input for MAL engine.
-    // Comparing to `collect (stream MeterData)`, one stream is an input data set.
+    // By using this, each one in the stream would be treated as a complete input for MAL engine,
+    // comparing to `collect (stream MeterData)`, which is using one stream as an input data set.
     rpc collectBatch (stream MeterDataCollection) returns (Commands) {
     }
 }
