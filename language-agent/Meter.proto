@@ -30,6 +30,10 @@ service MeterReportService {
     // Meter data is reported in a certain period. The agent/SDK should report all collected metrics in this period through one stream.
     rpc collect (stream MeterData) returns (Commands) {
     }
+
+    // It is recommended to keep the stream alive for performance considerations
+    rpc collectBatch (stream MeterDataCollection) returns (Commands) {
+    }
 }
 
 // Label of the meter

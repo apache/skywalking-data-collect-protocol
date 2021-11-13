@@ -30,4 +30,8 @@ service MeterReportService {
     // Meter data is reported in a certain period. The agent/SDK should report all collected metrics in this period through one stream.
     rpc collect (stream skywalking.v3.MeterData) returns (skywalking.v3.Commands) {
     }
+
+    // It is recommended to keep the stream alive for performance considerations
+    rpc collectBatch (stream skywalking.v3.MeterDataCollection) returns (skywalking.v3.Commands) {
+    }
 }
