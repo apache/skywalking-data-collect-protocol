@@ -216,7 +216,7 @@ enum SpanLayer {
     // A cache layer, used in tracing the cache client component.
     Cache = 5;
     // A faas layer, used in function-as-a-Service platform.
-    Faas = 6;
+    FAAS = 6;
 }
 
 // The segment collections for trace report in batch and sync mode.
