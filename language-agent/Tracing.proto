@@ -215,7 +215,7 @@ enum SpanLayer {
     MQ = 4;
     // A cache layer, used in tracing the cache client component.
     Cache = 5;
-    // A faas layer, used in function-as-a-Service platform.
+    // A FAAS layer, used in function-as-a-Service platform.
     FAAS = 6;
 }
 
