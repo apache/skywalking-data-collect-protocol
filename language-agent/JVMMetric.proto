@@ -83,6 +83,7 @@ message GC {
 enum GCPhrase {
     NEW = 0;
     OLD = 1;
+    NORMAL = 2;
 }
 
 // See: https://docs.oracle.com/javase/8/docs/api/java/lang/management/ThreadMXBean.html
