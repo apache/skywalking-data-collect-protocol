@@ -75,7 +75,7 @@ enum PoolType {
 }
 
 message GC {
-    GCPhase phrase = 1;
+    GCPhase phase = 1;
     int64 count = 2;
     int64 time = 3;
 }
