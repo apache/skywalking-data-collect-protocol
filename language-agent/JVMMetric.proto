@@ -75,15 +75,15 @@ enum PoolType {
 }
 
 message GC {
-    GCPhrase phrase = 1;
+    GCPhase phase = 1;
     int64 count = 2;
     int64 time = 3;
 }
 
-enum GCPhrase {
+enum GCPhase {
     NEW = 0;
     OLD = 1;
-    NORMAL = 2; // The type of GC doesn't have new and old phrases, like Z Garbage Collector (ZGC)
+    NORMAL = 2; // The type of GC doesn't have new and old phases, like Z Garbage Collector (ZGC)
 }
 
 // See: https://docs.oracle.com/javase/8/docs/api/java/lang/management/ThreadMXBean.html
