@@ -83,7 +83,7 @@ message GC {
 enum GCPhrase {
     NEW = 0;
     OLD = 1;
-    NORMAL = 2;
+    NORMAL = 2; // this is the garbage collector which does not have generation collect, like ZGC, it does not have old or new young generation
 }
 
 // See: https://docs.oracle.com/javase/8/docs/api/java/lang/management/ThreadMXBean.html
