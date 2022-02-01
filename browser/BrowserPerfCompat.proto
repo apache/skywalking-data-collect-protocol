@@ -20,7 +20,7 @@ syntax = "proto3";
 
 option java_multiple_files = true;
 option java_package = "org.apache.skywalking.apm.network.language.agent.v3.compat";
-option csharp_namespace = "SkyWalking.NetworkProtocol.V3";
+option csharp_namespace = "SkyWalking.NetworkProtocol.V3.Compat";
 option go_package = "skywalking.apache.org/repo/goapi/collect/language/agent/v3";
 option deprecated = true;
 
