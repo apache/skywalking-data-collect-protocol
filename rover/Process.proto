@@ -29,44 +29,34 @@ import "common/Common.proto";
 // Define the Rover detected processes and report them.
 service ProcessService {
     // Report discovered process in Rover
-    rpc reportProcesses (ProcessList) returns (RoverProbeDownstream) {
+    rpc reportProcesses (ProcessReportList) returns (ReportProcessDownstream) {
     }
 
     // Keep the process alive in the backend.
-    rpc keepAlive (ProcessPingPkg) returns (RoverProbeDownstream) {
+    rpc keepAlive (ProcessPingPkgList) returns (KeepAliveProcessDownstream) {
     }
 }
 
-message ProcessList {
+message ProcessReportList {
     repeated ProcessProperties processes = 1;
 }
 
 message ProcessProperties {
-    // [required] Detect process mode
+    // Detect process mode
     ProcessOwner owner = 1;
-    // [required] Host Process metadata
-    ProcessMetadata metadata = 2;
-    // [optional] Mapping process with other instance
-    // required when the process have agent/sdk installed
-    MappedInstance mappedInstance = 3;
-    // [optional] Kubernetes process metadata
-    // required when detect by Kubernetes
-    KubernetesMetadata k8sMetadata = 4;
-}
-
-message ProcessPingPkg {
-    // [required] The IP address of the host where the process resides
-    string hostIP = 1;
-    // [required] The Process id of the host
-    int32 pid = 2;
+    // The Process metadata
+    oneof metadata {
+        HostProcessMetadata hostProcess = 2;
+        KubernetesMetadata k8sMetadata = 3;
+    }
 }
 
 enum ProcessOwner {
-    kubernetes = 0;
-    vm = 1;
+    KUBERNETES = 0;
+    VM = 1;
 }
 
-message ProcessMetadata {
+message HostProcessMetadata {
     // [required] Service name of process
     // Used to logically aggregate multiple Process
     string serviceName = 1;
@@ -80,18 +70,42 @@ message ProcessMetadata {
     int32 pid = 5;
 }
 
-// Kubernetes process metadata
+// [WIP] Kubernetes process metadata
 message KubernetesMetadata {
-    string clusterName = 1;
-    string serviceName = 2;
-    string podName = 3;
-    string containerName = 4;
 }
 
-// Mapping to instance
-message MappedInstance {
-    string instanceId = 1;
+message ReportProcessDownstream {
+    repeated ProcessDownstream processes = 1;
 }
 
-message RoverProbeDownstream {
+message ProcessDownstream {
+    // Generate process id
+    string processId = 1;
+    // The process detect mode
+    ProcessOwner owner = 2;
+    // Locate the process by basic information
+    oneof process {
+        HostProcessDownstream hostProcess = 3;
+        KubernetesProcessDownstream k8sProcess = 4;
+    }
+}
+
+message HostProcessDownstream {
+    int32 pid = 1;
+}
+
+// [WIP] Kubernetes process downstream
+message KubernetesProcessDownstream {
+}
+
+message ProcessPingPkgList {
+    repeated ProcessPingPkg processes = 1;
+}
+
+message ProcessPingPkg {
+    // Process id from report method response
+    string processId = 1;
+}
+
+message KeepAliveProcessDownstream {
 }
