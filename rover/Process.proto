@@ -1,0 +1,98 @@
+/*
+ * Licensed to the Apache Software Foundation (ASF) under one or more
+ * contributor license agreements.  See the NOTICE file distributed with
+ * this work for additional information regarding copyright ownership.
+ * The ASF licenses this file to You under the Apache License, Version 2.0
+ * (the "License"); you may not use this file except in compliance with
+ * the License.  You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
+
+syntax = "proto3";
+
+package skywalking.v3;
+
+option java_multiple_files = true;
+option java_package = "org.apache.skywalking.apm.network.rover.process.v3";
+option go_package = "skywalking.apache.org/repo/goapi/collect/rover/process/v3";
+
+import "common/Common.proto";
+import "rover/Common.proto";
+
+// Define the Rover detected processes and report them.
+service ProcessService {
+    // Report discovered process in Rover
+    rpc reportProcess (stream ProcessProperties) returns (RoverProbeDownstream) {
+    }
+
+    // Keep the process alive in the backend.
+    rpc keepAlive (ProcessPingPkg) returns (RoverProbeDownstream) {
+    }
+}
+
+message ProcessProperties {
+    // [required] Detect process mode
+    ProcessOwner owner = 1;
+    // [required] Host Process metadata
+    ProcessMetadata metadata = 2;
+    // [required] Process related function metadata
+    ProcessFeatures features = 3;
+    // [optional] Mapping process with other instance
+    // required when the process have agent/sdk installed
+    MappedInstance mappedInstance = 4;
+    // [optional] Kubernetes process metadata
+    // required when detect by Kubernetes
+    KubernetesMetadata k8sMetadata = 5;
+}
+
+message ProcessPingPkg {
+    // [required] The IP address of the host where the process resides
+    string hostIP = 1;
+    // [required] The Process id of the host
+    int32 pid = 2;
+}
+
+enum ProcessOwner {
+    kubernetes = 0;
+    vm = 1;
+}
+
+message ProcessMetadata {
+    // [required] Service name of process
+    // Used to logically aggregate multiple Process
+    string serviceName = 1;
+    // [required] User define or generated process name
+    string name = 2;
+    // [required] Process full command line
+    string cmd = 3;
+    // [required] The IP address of the host where the process resides
+    string hostIP = 4;
+    // [required] The Process id of the host
+    int32 pid = 5;
+}
+
+// Kubernetes process metadata
+message KubernetesMetadata {
+    string clusterName = 1;
+    string serviceName = 2;
+    string podName = 3;
+    string containerName = 4;
+}
+
+// Mapping to instance
+message MappedInstance {
+    string instanceId = 1;
+}
+
+// Process features metadata
+message ProcessFeatures {
+    bool profiling = 1;
+}
