@@ -25,12 +25,11 @@ option java_package = "org.apache.skywalking.apm.network.rover.process.v3";
 option go_package = "skywalking.apache.org/repo/goapi/collect/rover/process/v3";
 
 import "common/Common.proto";
-import "rover/Common.proto";
 
 // Define the Rover detected processes and report them.
 service ProcessService {
     // Report discovered process in Rover
-    rpc reportProcess (stream ProcessProperties) returns (RoverProbeDownstream) {
+    rpc reportProcesses (ProcessList) returns (RoverProbeDownstream) {
     }
 
     // Keep the process alive in the backend.
@@ -38,19 +37,21 @@ service ProcessService {
     }
 }
 
+message ProcessList {
+    repeated ProcessProperties processes = 1;
+}
+
 message ProcessProperties {
     // [required] Detect process mode
     ProcessOwner owner = 1;
     // [required] Host Process metadata
     ProcessMetadata metadata = 2;
-    // [required] Process related function metadata
-    ProcessFeatures features = 3;
     // [optional] Mapping process with other instance
     // required when the process have agent/sdk installed
-    MappedInstance mappedInstance = 4;
+    MappedInstance mappedInstance = 3;
     // [optional] Kubernetes process metadata
     // required when detect by Kubernetes
-    KubernetesMetadata k8sMetadata = 5;
+    KubernetesMetadata k8sMetadata = 4;
 }
 
 message ProcessPingPkg {
@@ -92,7 +93,5 @@ message MappedInstance {
     string instanceId = 1;
 }
 
-// Process features metadata
-message ProcessFeatures {
-    bool profiling = 1;
+message RoverProbeDownstream {
 }
