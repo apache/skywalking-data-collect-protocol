@@ -94,6 +94,6 @@ message ProcessPingPkgList {
 }
 
 message ProcessPingPkg {
-    // Process id from report method response
+    // Process id assigned by OAP server.
     string processId = 1;
 }
