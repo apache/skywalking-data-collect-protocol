@@ -45,7 +45,7 @@ message ProcessProperties {
     // The Process metadata
     oneof metadata {
         HostProcessMetadata hostProcess = 1;
-        KubernetesMetadata k8sMetadata = 2;
+        KubernetesProcessMetadata k8sProcess = 2;
     }
 }
 
@@ -64,7 +64,7 @@ message HostProcessMetadata {
 }
 
 // [WIP] Kubernetes process metadata
-message KubernetesMetadata {
+message KubernetesProcessMetadata {
 }
 
 message ReportProcessDownstream {
