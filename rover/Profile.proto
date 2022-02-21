@@ -48,8 +48,8 @@ message ProfileTaskQuery {
 message ProfileData {
     // which process and task is profiled
     ProcessProfileMetadata processProfileMetadata = 1;
-    // stack data
-    ProfileStackMetadata stackMetadata = 2;
+    // stack data in one task(thread)
+    repeated ProfileStackMetadata stacks = 2;
     // stack counts
     ProfileStackCounts stackCounts = 3;
 }
