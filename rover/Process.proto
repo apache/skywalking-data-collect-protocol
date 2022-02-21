@@ -39,6 +39,8 @@ service ProcessService {
 
 message ProcessReportList {
     repeated ProcessProperties processes = 1;
+    // Rover generate instance id in local, make sure it inconsistent every time when start
+    string roverInstanceId = 2;
 }
 
 message ProcessProperties {

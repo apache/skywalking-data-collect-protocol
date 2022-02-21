@@ -28,57 +28,60 @@ import "common/Common.proto";
 
 // Define the Rover Process profile task and upload profile data.
 service ProfileService {
-    // Query profile tasks
+    // Query profile (start or stop) tasks
     rpc queryTasks (ProfileTaskQuery) returns (Commands) {
     }
 
     // collect profile data
     rpc collectProfileData (stream ProfileData) returns (Commands) {
     }
-
-    // report profile task finished
-    rpc reportTaskFinish (ProfileTaskFinishReport) returns (Commands) {
-    }
 }
 
 message ProfileTaskQuery {
-    // existing process id list in rover side
-    repeated string processIdList = 1;
+    // rover instance id
+    string roverInstanceId = 1;
 
     // last command timestamp
     int64 lastCommandTime = 2;
 }
 
 message ProfileData {
+    // which process and task is profiled
+    ProcessProfileMetadata processProfileMetadata = 1;
+    // stack data
+    ProfileStackMetadata stackMetadata = 2;
+    // stack counts
+    ProfileStackCounts stackCounts = 3;
+}
+
+message ProcessProfileMetadata {
     // profile task id
     string taskId = 1;
     // profiled process id
     string processId = 2;
-
-    // stack metadata
-    ProfileStack stack = 3;
-
-    // stack counts
-    // the stack dump count
-    int32 stackDumpCount = 4;
-    // the stack sample data count, such as total IO latency time when profile IO latency
-    int32 stackSampleCount = 5;
+    // the start time of this profiled process
+    int64 profileStartTime = 3;
+    // report time
+    int64 currentTime = 4;
 }
 
-message ProfileStack {
+message ProfileStackMetadata {
+    // stack type
     ProfileStackType stackType = 1;
+    // stack id from kernel provide
     int32 stackId = 2;
+    // stack symbols
     repeated string stackSymbols = 3;
+}
+
+message ProfileStackCounts {
+    // the stack dump count
+    int32 dumpCount = 1;
+    // the stack sample data count, such as total IO latency time when profile IO latency
+    int32 sampleCount = 2;
 }
 
 enum ProfileStackType {
     PROCESS_KERNEL_SPACE = 0;
     PROCESS_USER_SPACE = 1;
-}
-
-message ProfileTaskFinishReport {
-    // profile task id
-    string taskId = 1;
-    // profiled process id
-    string processId = 2;
 }
