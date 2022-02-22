@@ -21,39 +21,40 @@ syntax = "proto3";
 package skywalking.v3;
 
 option java_multiple_files = true;
-option java_package = "org.apache.skywalking.apm.network.rover.profile.v3";
-option go_package = "skywalking.apache.org/repo/goapi/collect/rover/profile/v3";
+option java_package = "org.apache.skywalking.apm.network.ebpf.profiling.v3";
+option go_package = "skywalking.apache.org/repo/goapi/collect/ebpf/profiling/v3";
 
 import "common/Common.proto";
 
 // Define the Rover Process profile task and upload profile data.
-service ProfileService {
+service EBPFProfilingService {
     // Query profile (start or stop) tasks
-    rpc queryTasks (ProfileTaskQuery) returns (Commands) {
+    rpc queryTasks (EBPFProfilingTaskQuery) returns (Commands) {
     }
 
     // collect profile data
-    rpc collectProfileData (stream ProfileData) returns (Commands) {
+    rpc collectProfileData (stream EBPFProfilingData) returns (Commands) {
     }
 }
 
-message ProfileTaskQuery {
+message EBPFProfilingTaskQuery {
     // rover instance id
     string roverInstanceId = 1;
 
-    int64 latest = 2;
+    // latest task update time
+    int64 latestUpdateTime = 2;
 }
 
-message ProfileData {
+message EBPFProfilingData {
     // task metadata
-    ProfileTaskMetadata task = 1;
+    EBPFProfilingTaskMetadata task = 1;
     // profile data
     oneof profile {
-        OnCPUProfile onCPU = 2;
+        EBPFOnCPUProfile onCPU = 2;
     }
 }
 
-message ProfileTaskMetadata {
+message EBPFProfilingTaskMetadata {
     // profile task id
     string taskId = 1;
     // profiled process id
@@ -64,23 +65,23 @@ message ProfileTaskMetadata {
     int64 currentTime = 4;
 }
 
-message ProfileStackMetadata {
+message EBPFProfilingStackMetadata {
     // stack type
-    ProfileStackType stackType = 1;
+    EBPFProfilingStackType stackType = 1;
     // stack id from kernel provide
     int32 stackId = 2;
     // stack symbols
     repeated string stackSymbols = 3;
 }
 
-enum ProfileStackType {
+enum EBPFProfilingStackType {
     PROCESS_KERNEL_SPACE = 0;
     PROCESS_USER_SPACE = 1;
 }
 
-message OnCPUProfile {
+message EBPFOnCPUProfile {
     // stack data in one task(thread)
-    repeated ProfileStackMetadata stacks = 1;
+    repeated EBPFProfilingStackMetadata stacks = 1;
     // stack counts
     int32 dumpCount = 2;
 }
