@@ -26,14 +26,14 @@ option go_package = "skywalking.apache.org/repo/goapi/collect/ebpf/profiling/v3"
 
 import "common/Common.proto";
 
-// Define the Rover Process profile task and upload profile data.
+// Define the Rover Process profiling task and upload profiling data.
 service EBPFProfilingService {
-    // Query profile (start or stop) tasks
+    // Query profiling (start or stop) tasks
     rpc queryTasks (EBPFProfilingTaskQuery) returns (Commands) {
     }
 
-    // collect profile data
-    rpc collectProfileData (stream EBPFProfilingData) returns (Commands) {
+    // collect profiling data
+    rpc collectProfilingData (stream EBPFProfilingData) returns (Commands) {
     }
 }
 
@@ -48,19 +48,19 @@ message EBPFProfilingTaskQuery {
 message EBPFProfilingData {
     // task metadata
     EBPFProfilingTaskMetadata task = 1;
-    // profile data
-    oneof profile {
-        EBPFOnCPUProfile onCPU = 2;
+    // profiling data
+    oneof profiling {
+        EBPFOnCPUProfiling onCPU = 2;
     }
 }
 
 message EBPFProfilingTaskMetadata {
-    // profile task id
+    // profiling task id
     string taskId = 1;
-    // profiled process id
+    // profiling process id
     string processId = 2;
-    // the start time of this profiled process
-    int64 profileStartTime = 3;
+    // the start time of this profiling process
+    int64 profilingStartTime = 3;
     // report time
     int64 currentTime = 4;
 }
@@ -79,7 +79,7 @@ enum EBPFProfilingStackType {
     PROCESS_USER_SPACE = 1;
 }
 
-message EBPFOnCPUProfile {
+message EBPFOnCPUProfiling {
     // stack data in one task(thread)
     repeated EBPFProfilingStackMetadata stacks = 1;
     // stack counts
