@@ -51,7 +51,7 @@ message ProfileData {
     // stack data in one task(thread)
     repeated ProfileStackMetadata stacks = 2;
     // stack counts
-    ProfileStackCounts stackCounts = 3;
+    int32 dumpCount = 3;
 }
 
 message ProcessProfileMetadata {
@@ -72,13 +72,6 @@ message ProfileStackMetadata {
     int32 stackId = 2;
     // stack symbols
     repeated string stackSymbols = 3;
-}
-
-message ProfileStackCounts {
-    // the stack dump count
-    int32 dumpCount = 1;
-    // the stack sample data count, such as total IO latency time when profile IO latency
-    int32 sampleCount = 2;
 }
 
 enum ProfileStackType {
