@@ -41,20 +41,19 @@ message ProfileTaskQuery {
     // rover instance id
     string roverInstanceId = 1;
 
-    // last command timestamp
-    int64 lastCommandTime = 2;
+    int64 latest = 2;
 }
 
 message ProfileData {
-    // which process and task is profiled
-    ProcessProfileMetadata processProfileMetadata = 1;
-    // stack data in one task(thread)
-    repeated ProfileStackMetadata stacks = 2;
-    // stack counts
-    int32 dumpCount = 3;
+    // task metadata
+    ProfileTaskMetadata task = 1;
+    // profile data
+    oneof profile {
+        OnCPUProfile onCPU = 2;
+    }
 }
 
-message ProcessProfileMetadata {
+message ProfileTaskMetadata {
     // profile task id
     string taskId = 1;
     // profiled process id
@@ -77,4 +76,11 @@ message ProfileStackMetadata {
 enum ProfileStackType {
     PROCESS_KERNEL_SPACE = 0;
     PROCESS_USER_SPACE = 1;
+}
+
+message OnCPUProfile {
+    // stack data in one task(thread)
+    repeated ProfileStackMetadata stacks = 1;
+    // stack counts
+    int32 dumpCount = 2;
 }
