@@ -21,35 +21,37 @@ syntax = "proto3";
 package skywalking.v3;
 
 option java_multiple_files = true;
-option java_package = "org.apache.skywalking.apm.network.rover.process.v3";
-option go_package = "skywalking.apache.org/repo/goapi/collect/rover/process/v3";
+option java_package = "org.apache.skywalking.apm.network.ebpf.profiling.process.v3";
+option go_package = "skywalking.apache.org/repo/goapi/collect/ebpf/profiling/process/v3";
 
 import "common/Common.proto";
 
-// Define the Rover detected processes and report them.
-service ProcessService {
+// Define the detected processes and report them.
+service EBPFProcessService {
     // Report discovered process in Rover
-    rpc reportProcesses (ProcessReportList) returns (ReportProcessDownstream) {
+    rpc reportProcesses (EBPFProcessReportList) returns (EBPFReportProcessDownstream) {
     }
 
     // Keep the process alive in the backend.
-    rpc keepAlive (ProcessPingPkgList) returns (Commands) {
+    rpc keepAlive (EBPFProcessPingPkgList) returns (Commands) {
     }
 }
 
-message ProcessReportList {
-    repeated ProcessProperties processes = 1;
+message EBPFProcessReportList {
+    repeated EBPFProcessProperties processes = 1;
+    // Rover generate instance id in local, make sure it inconsistent every time when start
+    string roverInstanceId = 2;
 }
 
-message ProcessProperties {
+message EBPFProcessProperties {
     // The Process metadata
     oneof metadata {
-        HostProcessMetadata hostProcess = 1;
-        KubernetesProcessMetadata k8sProcess = 2;
+        EBPFHostProcessMetadata hostProcess = 1;
+        EBPFKubernetesProcessMetadata k8sProcess = 2;
     }
 }
 
-message HostProcessMetadata {
+message EBPFHostProcessMetadata {
     // [required] Service name of process
     // Used to logically aggregate multiple Process
     string serviceName = 1;
@@ -64,36 +66,36 @@ message HostProcessMetadata {
 }
 
 // [WIP] Kubernetes process metadata
-message KubernetesProcessMetadata {
+message EBPFKubernetesProcessMetadata {
 }
 
-message ReportProcessDownstream {
-    repeated ProcessDownstream processes = 1;
+message EBPFReportProcessDownstream {
+    repeated EBPFProcessDownstream processes = 1;
 }
 
-message ProcessDownstream {
+message EBPFProcessDownstream {
     // Generated process id
     string processId = 1;
     // Locate the process by basic information
     oneof process {
-        HostProcessDownstream hostProcess = 2;
-        KubernetesProcessDownstream k8sProcess = 3;
+        EBPFHostProcessDownstream hostProcess = 2;
+        EBPFKubernetesProcessDownstream k8sProcess = 3;
     }
 }
 
-message HostProcessDownstream {
+message EBPFHostProcessDownstream {
     int32 pid = 1;
 }
 
 // [WIP] Kubernetes process downstream
-message KubernetesProcessDownstream {
+message EBPFKubernetesProcessDownstream {
 }
 
-message ProcessPingPkgList {
-    repeated ProcessPingPkg processes = 1;
+message EBPFProcessPingPkgList {
+    repeated EBPFProcessPingPkg processes = 1;
 }
 
-message ProcessPingPkg {
+message EBPFProcessPingPkg {
     // Process id assigned by OAP server.
     string processId = 1;
 }
