@@ -40,7 +40,7 @@ service EBPFProcessService {
 message EBPFProcessReportList {
     repeated EBPFProcessProperties processes = 1;
     // Report instance generate instance id in local, make sure it inconsistent every time when start
-    string instanceId = 2;
+    string ebpfAgentID = 2;
 }
 
 message EBPFProcessProperties {
