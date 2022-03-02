@@ -106,6 +106,6 @@ message EBPFProcessPingPkgList {
 }
 
 message EBPFProcessPingPkg {
-    // Process id assigned by OAP server.
-    string processId = 1;
+    // Process entity
+    EBPFProcessEntityMetadata entityMetadata = 1;
 }
