@@ -3,3 +3,5 @@
 /bazel-out
 /bazel-skywalking-data-collect-protocol
 /bazel-testlogs
+
+.idea
