@@ -52,4 +52,6 @@ message InstanceProperties {
 message InstancePingPkg {
     string service = 1;
     string serviceInstance = 2;
+    // Instance belong layer name which define in the backend, general is default.
+    string layer = 3;
 }
