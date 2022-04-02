@@ -21,7 +21,7 @@ syntax = "proto3";
 option java_multiple_files = true;
 option java_package = "org.apache.skywalking.apm.network.language.profile.v3.compat";
 option csharp_namespace = "SkyWalking.NetworkProtocol.V3.Compat";
-option go_package = "skywalking.apache.org/repo/goapi/collect/language/profile/v3";
+option go_package = "skywalking.apache.org/repo/goapi/collect/language/profile/v3/compat";
 option deprecated = true;
 
 import "common/Common.proto";
