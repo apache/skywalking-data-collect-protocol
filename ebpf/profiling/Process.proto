@@ -73,6 +73,8 @@ message EBPFProcessEntityMetadata {
     string instanceName = 3;
     // [required] Process name
     string processName = 4;
+    // Process labels for aggregate from service
+    repeated string labels = 5;
 }
 
 // [WIP] Kubernetes process metadata
