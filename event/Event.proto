@@ -65,6 +65,10 @@ message Event {
   // The end time (in milliseconds) of the event. , measured between the current time and midnight, January 1, 1970 UTC.
   // This field may be empty if the event has not stopped yet, otherwise it should be a valid timestamp after `startTime`.
   int64 endTime = 8;
+  
+  // [Required] Since 9.0.0
+  // Name of the layer to which the event belongs.
+  string layer = 9;
 }
 
 enum Type {
