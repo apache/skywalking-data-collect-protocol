@@ -66,7 +66,8 @@ message Event {
   // This field may be empty if the event has not stopped yet, otherwise it should be a valid timestamp after `startTime`.
   int64 endTime = 8;
   
-  // Name of the layer to which the event belongs. If absent, the OAP would set `layer`=`ID: 0, NAME: undefined`.
+  [Required] Since 9.0.0
+  // Name of the layer to which the event belongs.
   string layer = 9;
 }
 
