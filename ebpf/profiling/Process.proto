@@ -55,12 +55,10 @@ message EBPFHostProcessMetadata {
     // [required] Entity metadata
     // Must ensure that entity information is unique at the time of reporting
     EBPFProcessEntityMetadata entity = 1;
-    // [required] Process full command line
-    string cmd = 2;
-    // [required] The IP address of the host where the process resides
-    string hostIP = 3;
     // [required] The Process id of the host
-    int32 pid = 4;
+    int32 pid = 2;
+    // [optional] properties of the process
+    repeated KeyStringValuePair properties = 3;
 }
 
 // Process Entity metadata
@@ -77,8 +75,15 @@ message EBPFProcessEntityMetadata {
     repeated string labels = 5;
 }
 
-// [WIP] Kubernetes process metadata
+// Kubernetes process metadata
 message EBPFKubernetesProcessMetadata {
+    // [required] Entity metadata
+    // Must ensure that entity information is unique at the time of reporting
+    EBPFProcessEntityMetadata entity = 1;
+    // [required] The Process id of the host
+    int32 pid = 2;
+    // [optional] properties of the process
+    repeated KeyStringValuePair properties = 3;
 }
 
 message EBPFReportProcessDownstream {
@@ -99,8 +104,9 @@ message EBPFHostProcessDownstream {
     int32 pid = 1;
 }
 
-// [WIP] Kubernetes process downstream
+// Kubernetes process downstream
 message EBPFKubernetesProcessDownstream {
+    int32 pid = 1;
 }
 
 message EBPFProcessPingPkgList {
