@@ -59,6 +59,17 @@ message ServiceMeshMetric {
 
     // The tcp detail of the mesh metrics if it's a TCP metrics, otherwise should be empty.
     TCPInfo tcp = 15;
+
+    // Internal request(response) latency is the time cost inside the Envoy sidecar proxy.
+    // For more details, check https://www.envoyproxy.io/docs/envoy/v1.22.0/api-v3/data/accesslog/v3/accesslog.proto.html#data-accesslog-v3-accesslogcommon.
+    // internalRequestLatencyNanos is the interval between the first downstream byte received and the first upstream byte sent
+    int64 internalRequestLatencyNanos = 16;
+    // internalResponseLatencyNanos = time_to_first_downstream_tx_byte - time_to_first_upstream_rx_byte;
+    // | ... request workflow  ... | upstream | ----- response -----> |                proxy                | ------- response -------> | client  |
+    // |                 time_to_first_upstream_rx_byte               |
+    // |                                  time_to_last_downstream_tx_byte                                                               |
+    //                                                                |              internalResponseLatencyNanos                       |
+    int64 internalResponseLatencyNanos = 17;
 }
 
 enum Protocol {
