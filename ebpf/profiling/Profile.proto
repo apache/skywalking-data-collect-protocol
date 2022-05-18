@@ -51,6 +51,7 @@ message EBPFProfilingData {
     // profiling data
     oneof profiling {
         EBPFOnCPUProfiling onCPU = 2;
+        EBPFOffCPUProfiling offCPU = 3;
     }
 }
 
@@ -84,4 +85,13 @@ message EBPFOnCPUProfiling {
     repeated EBPFProfilingStackMetadata stacks = 1;
     // stack counts
     int32 dumpCount = 2;
+}
+
+message EBPFOffCPUProfiling {
+    // stack data in one task(thread)
+    repeated EBPFProfilingStackMetadata stacks = 1;
+    // total count of the process is switched to off cpu by the scheduler.
+    int32 switchCount = 2;
+    // where time(nanoseconds) is spent waiting while blocked on I/O, locks, timers, paging/swapping, etc.
+    int64 duration = 3;
 }
