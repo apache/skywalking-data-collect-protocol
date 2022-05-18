@@ -92,6 +92,6 @@ message EBPFOffCPUProfiling {
     repeated EBPFProfilingStackMetadata stacks = 1;
     // total count of the process is switched to off cpu by the scheduler.
     int32 switchCount = 2;
-    // where time(microseconds) is spent waiting while blocked on I/O, locks, timers, paging/swapping, etc.
+    // where time(nanoseconds) is spent waiting while blocked on I/O, locks, timers, paging/swapping, etc.
     int64 duration = 3;
 }
