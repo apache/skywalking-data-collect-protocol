@@ -70,6 +70,9 @@ message ServiceMeshMetric {
     // |                                  time_to_last_downstream_tx_byte                                                               |
     //                                                                |              internalResponseLatencyNanos                       |
     int64 internalResponseLatencyNanos = 17;
+
+    repeated KeyStringValuePair sourceInstanceProperties = 18;
+    repeated KeyStringValuePair destInstanceProperties = 19;
 }
 
 enum Protocol {
