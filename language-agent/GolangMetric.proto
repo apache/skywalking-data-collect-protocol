@@ -1,0 +1,50 @@
+/*
+ * Licensed to the Apache Software Foundation (ASF) under one or more
+ * contributor license agreements.  See the NOTICE file distributed with
+ * this work for additional information regarding copyright ownership.
+ * The ASF licenses this file to You under the Apache License, Version 2.0
+ * (the "License"); you may not use this file except in compliance with
+ * the License.  You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
+
+syntax = "proto3";
+
+package skywalking.v3;
+
+option csharp_namespace = "SkyWalking.NetworkProtocol.V3";
+option go_package = "skywalking.apache.org/repo/goapi/collect/language/agent/v3";
+
+import "common/Common.proto";
+
+// Define the Golang metrics report service.
+service GolangMetricReportService {
+  rpc collect (GolangMetricCollection) returns (Commands) {
+  }
+}
+
+message GolangMetricCollection {
+  repeated GolangMetric metrics = 1;
+  string service = 2;
+  string serviceInstance = 3;
+}
+
+message GolangMetric {
+  int64 time = 1;
+  int64 heapAlloc = 2;
+  int64 stackInUse = 3;
+  int64 gcNum = 4;
+  int64 gcPauseTime = 5;
+  int64 goroutineNum = 6;
+  int64 threadNum = 7;
+  int64 cpuUsedRate = 8;
+  int64 memUsedRate = 9;
+}
