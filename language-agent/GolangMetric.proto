@@ -45,6 +45,6 @@ message GolangMetric {
   int64 gcPauseTime = 5;
   int64 goroutineNum = 6;
   int64 threadNum = 7;
-  int64 cpuUsedRate = 8;
-  int64 memUsedRate = 9;
+  float cpuUsedRate = 8;
+  float memUsedRate = 9;
 }
