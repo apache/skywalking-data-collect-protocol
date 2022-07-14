@@ -21,7 +21,7 @@ syntax = "proto3";
 package skywalking.v3;
 
 option csharp_namespace = "SkyWalking.NetworkProtocol.V3";
-option go_package = "skywalking.apache.org/repo/goapi/collect/language/agent/v3";
+option go_package = "github.com/easonyipj/skywalking-goapi/collect/language/agent/v3";
 
 import "common/Common.proto";
 
