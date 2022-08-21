@@ -41,7 +41,7 @@ message GolangMetric {
   int64 time = 1;
   int64 heapAlloc = 2;
   int64 stackInUse = 3;
-  int64 gcNum = 4;
+  uint32 gcNum = 4;
   float gcPauseTime = 5;
   int64 goroutineNum = 6;
   int64 threadNum = 7;
