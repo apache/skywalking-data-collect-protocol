@@ -223,3 +223,62 @@ enum SpanLayer {
 message SegmentCollection {
     repeated SegmentObject segments = 1;
 }
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// ebpf agent(SkyWalking Rover) collects extra information from the OS(Linux Only) level to attach on the traced span.
+// Since v3.1
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+service SpanAttachedEventReportService {
+    // Collect SpanAttachedEvent to the OAP server in the streaming mode.
+    rpc collect (stream SpanAttachedEvent) returns (Commands) {
+    }
+}
+
+// SpanAttachedEvent represents an attached event for a traced RPC.
+//
+// When an RPC is being traced by the in-process language agent, a span would be reported by the client-side agent.
+// And the rover would be aware of this RPC due to the existing tracing header.
+// Then, the rover agent collects extra information from the OS level to provide assistance information to diagnose network performance.
+message SpanAttachedEvent {
+    // The nanosecond timestamp of the event's start time.
+    // Notice, most unit of timestamp in SkyWalking is milliseconds, but NANO-SECOND is required here.
+    // Because the attached event happens in the OS syscall level, most of them are executed rapidly.
+    Instant startTime = 1;
+    // The official event name.
+    // For example, the event name is a method signature from syscall stack.
+    string event = 2;
+    // [Optional] The nanosecond timestamp of the event's end time.
+    Instant endTime = 3;
+    // The tags for this event includes some extra OS level information,
+    // such as
+    // 1. net_device used for this exit span.
+    // 2. network L7 protocol
+    repeated KeyStringValuePair tags = 4;
+    // The summary of statistics during this event.
+    // Each statistic provides a name(metric name) to represent the name, and an int64/long as the value.
+    repeated KeyIntValuePair summary = 5;
+    // Refer to a trace context decoded from `sw8` header through network, such as HTTP header, MQ metadata
+    // https://skywalking.apache.org/docs/main/next/en/protocols/skywalking-cross-process-propagation-headers-protocol-v3/#standard-header-item
+    SpanReference traceContext = 6;
+
+    message SpanReference {
+        SpanReferenceType type = 1;
+        // [Optional] A string id represents the whole trace.
+        string traceId = 2;
+        // A unique id represents this segment. Other segments could use this id to reference as a child segment.
+        // [Optional] when this span reference
+        string traceSegmentId = 3;
+        // If type == SKYWALKING
+        // The number id of the span. Should be unique in the whole segment.
+        // Starting at 0
+        //
+        // If type == ZIPKIN
+        // The type of span ID is string.
+        string spanId = 4;
+    }
+
+    enum SpanReferenceType {
+        SKYWALKING = 0;
+        ZIPKIN = 1;
+    }
+}
