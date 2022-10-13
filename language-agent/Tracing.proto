@@ -236,9 +236,9 @@ service SpanAttachedEventReportService {
 
 // SpanAttachedEvent represents an attached event for a traced RPC.
 //
-// When a RPC is being traced by the in-process language agent, a span would be reported by client-side agent.
+// When an RPC is being traced by the in-process language agent, a span would be reported by the client-side agent.
 // And the rover would be aware of this RPC due to the existing tracing header.
-// Then, rover agent collects extra information from OS level to provide assist information to diagnose network performance.
+// Then, the rover agent collects extra information from the OS level to provide assistance information to diagnose network performance.
 message SpanAttachedEvent {
     // The nanosecond timestamp of the event's start time.
     // Notice, most unit of timestamp in SkyWalking is milliseconds, but NANO-SECOND is required here.
