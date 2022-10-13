@@ -61,7 +61,7 @@ message Command {
 
 // since v3.1
 // An instantaneous point on the time-line.
-// An instance represents a data point accurate to the nanosecond.
+// An instant represents a data point accurate to the nanosecond.
 // It is constituted by a long representing epoch-seconds and an int representing nanosecond-of-second,
 // which will always be between 0 and 999,999,999
 message Instant {
