@@ -30,6 +30,36 @@ import "common/Common.proto";
 // Command represents an protocol customized data when return.
 //
 // When the agent communicates with the OAP side using gRPC, the OAP uses Command to return the data content to the Agent.
+//
+// Current support following command:
+// Name: ConfigurationDiscoveryCommand
+// Args:
+//     SerialNumber: String
+//     UUID: String
+//     property: String
+//
+// Name: ProfileTaskQuery
+// Args:
+//     SerialNumber: String
+//     TaskId: String
+//     EndpointName: String
+//     Duration: Integer
+//     MinDurationThreshold: Integer
+//     DumpPeriod: Integer
+//     MaxSamplingCount: Integer
+//     StartTime: Date Timestamp
+//     CreateTime: Date Timestamp
+//
+// Name: EBPFProfilingTaskQuery
+// Args:
+//     TaskId: String
+//     ProcessId: Integer List
+//     TaskUpdateTime: Date timestamp
+//     TriggerType: Enum
+//     TargetType: Enum
+//     TaskStartTime: Date Timestamp
+//     ExtensionConfigJson: Json string
+//     FixedTriggerDuration: Long
 message Command {
     // Use command name to distinguish different data type.
     string command = 1;
