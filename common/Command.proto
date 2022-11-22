@@ -31,7 +31,7 @@ import "common/Common.proto";
 //
 // When the agent communicates with the OAP side using gRPC, the OAP uses Command to return the data content to the Agent.
 //
-// Current support following command:
+// The available commands are,
 // Name: ConfigurationDiscoveryCommand
 // Args:
 //     SerialNumber: String
@@ -58,7 +58,7 @@ import "common/Common.proto";
 //     TriggerType: Enum
 //     TargetType: Enum
 //     TaskStartTime: Date Timestamp
-//     ExtensionConfigJson: Json string
+//     ExtensionConfigJSON: JSON string
 //     FixedTriggerDuration: Long
 message Command {
     // Use command name to distinguish different data type.
