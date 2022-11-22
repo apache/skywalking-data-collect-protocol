@@ -25,6 +25,7 @@ option java_package = "org.apache.skywalking.apm.network.ebpf.profiling.process.
 option go_package = "skywalking.apache.org/repo/goapi/collect/ebpf/profiling/process/v3";
 
 import "common/Common.proto";
+import "common/Command.proto";
 
 // Define the detected processes and report them.
 service EBPFProcessService {

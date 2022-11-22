@@ -25,6 +25,7 @@ option java_package = "org.apache.skywalking.apm.network.language.agent.v3";
 option go_package = "skywalking.apache.org/repo/goapi/collect/language/agent/v3";
 
 import "common/Common.proto";
+import "common/Command.proto";
 
 service MeterReportService {
     // Meter data is reported in a certain period. The agent/SDK should report all collected metrics in this period through one stream.

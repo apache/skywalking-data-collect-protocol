@@ -21,41 +21,28 @@ syntax = "proto3";
 package skywalking.v3;
 
 option java_multiple_files = true;
-option java_package = "org.apache.skywalking.apm.network.language.agent.v3";
+option java_package = "org.apache.skywalking.apm.network.common.v3";
 option csharp_namespace = "SkyWalking.NetworkProtocol.V3";
-option go_package = "skywalking.apache.org/repo/goapi/collect/language/agent/v3";
+option go_package = "skywalking.apache.org/repo/goapi/collect/common/v3";
 
 import "common/Common.proto";
-import "common/Command.proto";
 
-service CLRMetricReportService {
-    rpc collect (CLRMetricCollection) returns (Commands) {
-    }
+// Command represents an protocol customized data when return.
+//
+// When the agent communicates with the OAP side using gRPC, the OAP uses Command to return the data content to the Agent.
+message Command {
+    // Use command name to distinguish different data type.
+    string command = 1;
+    // Data content in command.
+    // The value of content needs to be serialized as string for transmission.
+    //
+    // Basic data type: convert as string.
+    // The list of basic data: multiple data are split by ",".
+    // Complex data: serialize string through json.
+    repeated KeyStringValuePair args = 2;
 }
 
-message CLRMetricCollection {
-    repeated CLRMetric metrics = 1;
-    string service = 2;
-    string serviceInstance = 3;
-}
-
-message CLRMetric {
-    int64 time = 1;
-    CPU cpu = 2;
-    ClrGC gc = 3;
-    ClrThread thread = 4;
-}
-
-message ClrGC {
-    int64 Gen0CollectCount = 1;
-    int64 Gen1CollectCount = 2;
-    int64 Gen2CollectCount = 3;
-    int64 HeapMemory = 4;
-}
-
-message ClrThread {
-    int32 AvailableCompletionPortThreads = 1;
-    int32 AvailableWorkerThreads = 2;
-    int32 MaxCompletionPortThreads = 3;
-    int32 MaxWorkerThreads = 4;
+// Transferring multiple Command in agent and OAP.
+message Commands {
+    repeated Command commands = 1;
 }

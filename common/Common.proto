@@ -50,15 +50,6 @@ enum DetectPoint {
     proxy = 2;
 }
 
-message Commands {
-    repeated Command commands = 1;
-}
-
-message Command {
-    string command = 1;
-    repeated KeyStringValuePair args = 2;
-}
-
 // since v3.1
 // An instantaneous point on the time-line.
 // An instant represents a data point accurate to the nanosecond.
