@@ -25,6 +25,7 @@ option go_package = "skywalking.apache.org/repo/goapi/collect/language/agent/v3/
 option deprecated = true;
 
 import "common/Common.proto";
+import "common/Command.proto";
 import "language-agent/Tracing.proto";
 
 // Define a trace segment report service.

@@ -26,6 +26,7 @@ option csharp_namespace = "SkyWalking.NetworkProtocol.V3";
 option go_package = "skywalking.apache.org/repo/goapi/collect/language/agent/v3";
 
 import "common/Common.proto";
+import "common/Command.proto";
 
 // Define a trace segment report service.
 // All language agents or any trace collecting component, could use this service to send span collection to the SkyWalking OAP backend.

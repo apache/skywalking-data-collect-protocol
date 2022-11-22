@@ -26,6 +26,7 @@ option csharp_namespace = "SkyWalking.NetworkProtocol.V3";
 option go_package = "skywalking.apache.org/repo/goapi/collect/event/v3";
 
 import "common/Common.proto";
+import "common/Command.proto";
 
 service EventService {
   // When reporting an event, you typically call the collect function twice, one for starting of the event and the other one for ending of the event, with the same UUID.

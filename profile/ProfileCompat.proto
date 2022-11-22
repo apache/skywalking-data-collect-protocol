@@ -25,6 +25,7 @@ option go_package = "skywalking.apache.org/repo/goapi/collect/language/profile/v
 option deprecated = true;
 
 import "common/Common.proto";
+import "common/Command.proto";
 import "profile/Profile.proto";
 
 service ProfileTask {

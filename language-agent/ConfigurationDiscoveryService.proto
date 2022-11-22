@@ -26,6 +26,7 @@ option csharp_namespace = "SkyWalking.NetworkProtocol.V3";
 option go_package = "skywalking.apache.org/repo/goapi/collect/agent/configuration/v3";
 
 import "common/Common.proto";
+import "common/Command.proto";
 
 // Fetch the latest dynamic configurations of the service.
 service ConfigurationDiscoveryService {
