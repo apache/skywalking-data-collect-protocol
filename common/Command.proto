@@ -36,7 +36,7 @@ import "common/Common.proto";
 // Args:
 //     SerialNumber: String
 //     UUID: String
-//     property: String
+//     properties: Mapping the key, value from https://skywalking.apache.org/docs/skywalking-java/next/en/setup/service-agent/java-agent/configuration-discovery/
 //
 // Name: ProfileTaskQuery
 // Args:
@@ -59,6 +59,16 @@ import "common/Common.proto";
 //     TargetType: Enum
 //     TaskStartTime: Date Timestamp
 //     ExtensionConfigJSON: JSON string
+//         NetworkSamplings: List
+//             URIRegex: String
+//             MinDuration: Integer
+//             When4xx: Boolean
+//             When5xx: Boolean
+//             Settings: Object
+//                 RequireCompleteRequest: Boolean
+//                 MaxRequestSize: Integer
+//                 RequireCompleteResponse: Boolean
+//                 MaxResponseSize: Integer
 //     FixedTriggerDuration: Long
 message Command {
     // Use command name to distinguish different data type.
