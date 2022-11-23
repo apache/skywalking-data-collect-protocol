@@ -25,7 +25,6 @@ option java_package = "org.apache.skywalking.apm.network.language.profile.v3";
 option csharp_namespace = "SkyWalking.NetworkProtocol.V3";
 option go_package = "skywalking.apache.org/repo/goapi/collect/language/profile/v3";
 
-import "common/Common.proto";
 import "common/Command.proto";
 
 service ProfileTask {

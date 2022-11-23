@@ -24,7 +24,6 @@ option csharp_namespace = "SkyWalking.NetworkProtocol.V3.Compat";
 option go_package = "skywalking.apache.org/repo/goapi/collect/language/agent/v3/compat";
 option deprecated = true;
 
-import "common/Common.proto";
 import "common/Command.proto";
 import "browser/BrowserPerf.proto";
 
