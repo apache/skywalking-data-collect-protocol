@@ -24,7 +24,6 @@ option csharp_namespace = "SkyWalking.NetworkProtocol.V3.Compat";
 option go_package = "skywalking.apache.org/repo/goapi/collect/management/v3/compat";
 option deprecated = true;
 
-import "common/Common.proto";
 import "common/Command.proto";
 import "management/Management.proto";
 
