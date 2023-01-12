@@ -5,8 +5,10 @@ Apache SkyWalking typically collect data from
 3. Logs
 4. Command data. Push the commands to the agents from Server.
 5. Event. 
+6. eBPF profiling tasks.
+7. Agent in-process profiling tasks.
 
-This repo hosts the protocol of SkyWalking native report protocol, defined in gRPC. Read [Protocol DOC](https://github.com/apache/skywalking/blob/master/docs/en/protocols/README.md#probe-protocols) for more details
+This repo hosts the protocol of SkyWalking native report protocol, defined in gRPC. Read [Protocol DOC](https://skywalking.apache.org/docs/main/next/en/api/trace-data-protocol-v3/) for more details
 
 ## Release
 This repo wouldn't release separately. All source codes have been included in the main repo release. The tags match the [main repo](https://github.com/apache/skywalking) tags.
