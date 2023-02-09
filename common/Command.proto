@@ -74,6 +74,28 @@ import "common/Common.proto";
 //                 MaxResponseSize: Integer
 //         ------------------------
 //     FixedTriggerDuration: Long
+//
+// Name: ContinuousProfilingPolicyQuery
+// Args:
+//     ServiceWithPolicyJSON: List JSON serialization of ServiceWithPolicy.
+//         --- ServiceWithPolicy ---
+//         ServiceName: String
+//         UUID: String
+//         Policies: List
+//             ProcessCPUPercent: Integer
+//             ProcessThreadCount: Integer
+//             SystemLoad: Integer
+//             URIList: String List
+//             URIRegexList: String List
+//             URIMinCount: Integer
+//             URIErrorRate: Integer
+//             URITimeoutDuration: Integer
+//             URITimeoutRate: Integer
+//         ---------------------------
+//
+// Name: ContinuousProfilingReportTask
+// Args:
+//     TaskId: String
 message Command {
     // Use command name to distinguish different data type.
     string command = 1;
