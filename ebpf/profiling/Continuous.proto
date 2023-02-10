@@ -45,7 +45,8 @@ message ContinuousProfilingPolicyQuery {
 message ContinuousProfilingServicePolicyQuery {
     // service name of the each process
     string serviceName = 1;
-    // policy uuid
+    // UUID represents the version(hash/shasum) of the current policies for the service.
+    // This is blank in the initialization stage and is set through the `ContinuousProfilingPolicyQuery` command response for the following rounds of queries.
     string uuid = 2;
 }
 
