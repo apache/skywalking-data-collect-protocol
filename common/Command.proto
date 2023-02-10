@@ -91,7 +91,6 @@ import "common/Common.proto";
 //                     Count: Integer
 //                     URIList: List<String>
 //                     URIRegexList: List<String>
-//                     URITimeoutDuration(ms): Integer
 //         ---------------------------
 //
 // Name: ContinuousProfilingReportTask
