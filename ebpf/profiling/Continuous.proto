@@ -32,7 +32,7 @@ service ContinuousProfilingService {
     }
 
     // Report the profiling task when the policy threshold is reached
-    // Use the returned task ID to perform the profiling task, the profiling task reporting same as existing eBPF profiling task report protocol
+    // Use the returned task ID to perform the profiling task through EBPFProfilingService#collectProfilingData.
     rpc reportProfilingTask(ContinuousProfilingReport) returns (Commands) {
     }
 }
