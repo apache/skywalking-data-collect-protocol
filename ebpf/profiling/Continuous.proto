@@ -27,11 +27,12 @@ option go_package = "skywalking.apache.org/repo/goapi/collect/ebpf/profiling/v3"
 import "common/Command.proto";
 
 service ContinuousProfilingService {
-    // query continuous profiling policy
+    // Query continuous profiling policy
     rpc queryPolicies(ContinuousProfilingPolicyQuery) returns (Commands) {
     }
 
-    // report the profiling task when reach the threshold of policy
+    // Report the profiling task when the policy threshold is reached
+    // Use the returned task ID to perform the profiling task, the profiling task reporting same as existing eBPF profiling task report protocol
     rpc reportProfilingTask(ContinuousProfilingReport) returns (Commands) {
     }
 }
@@ -69,13 +70,19 @@ message ContinuousProfilingReport {
 }
 
 message ContinuousProfilingCause {
-    // The type of monitoring from the policy.
-    // A string is employed to allow for future expansion without the need for modifying the protocol.
-    string type = 1;
+    ContinuousProfilingCauseType type = 1;
     oneof cause {
         ContinuousProfilingSingleValueCause singleValue = 2;
         ContinuousProfilingURICause uri = 3;
     }
+}
+
+enum ContinuousProfilingCauseType {
+    ProcessCPU = 0;
+    ProcessThreadCount = 1;
+    SystemLoad = 2;
+    ProcessResponseErrorRate = 3;
+    ProcessResponseTimeoutRate = 4;
 }
 
 message ContinuousProfilingSingleValueCause {
@@ -84,8 +91,10 @@ message ContinuousProfilingSingleValueCause {
 }
 
 message ContinuousProfilingURICause {
-    string uriRegex = 1;
-    string uriPath = 2;
+    oneof uri {
+        string regex = 1;
+        string path = 2;
+    }
     double threshold = 3;
     double current = 4;
 }
@@ -100,9 +109,5 @@ message ContinuousOffCPUProfilingTask {
 
 // eBPF Network profiling task
 message ContinuousNetworkProfilingTask {
-    repeated ContinuousNetworkProfilingTaskSampling samplings = 1;
-}
-
-message ContinuousNetworkProfilingTaskSampling {
-    string uriRegex = 1;
+    string samplingURIRegexes = 1;
 }
