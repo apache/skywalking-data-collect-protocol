@@ -55,8 +55,8 @@ message ContinuousProfilingReport {
     string instanceName = 3;
     string processName = 4;
 
-    // reached thresholds
-    repeated ContinuousProfilingThreshold reaches = 5;
+    // reached thresholds causes
+    repeated ContinuousProfilingCause causes = 5;
 
     // target profiling task execute duration
     int32 duration = 6;
@@ -64,24 +64,26 @@ message ContinuousProfilingReport {
     oneof targetTask {
         ContinuousOnCPUProfilingTask onCPU = 7;
         ContinuousOffCPUProfilingTask offCPU = 8;
-        ContinuousNetworkProfilingTask networkCPU = 9;
+        ContinuousNetworkProfilingTask network = 9;
     }
 }
 
-message ContinuousProfilingThreshold {
+message ContinuousProfilingCause {
+    // The type of monitoring from the policy.
+    // A string is employed to allow for future expansion without the need for modifying the protocol.
     string type = 1;
-    oneof threshold {
-        ContinuousProfilingSingleValueThreshold singleValue = 2;
-        ContinuousProfilingURIThreshold uri = 3;
+    oneof cause {
+        ContinuousProfilingSingleValueCause singleValue = 2;
+        ContinuousProfilingURICause uri = 3;
     }
 }
 
-message ContinuousProfilingSingleValueThreshold {
+message ContinuousProfilingSingleValueCause {
     double threshold = 1;
     double current = 2;
 }
 
-message ContinuousProfilingURIThreshold {
+message ContinuousProfilingURICause {
     string uriRegex = 1;
     string uriPath = 2;
     double threshold = 3;
@@ -103,9 +105,4 @@ message ContinuousNetworkProfilingTask {
 
 message ContinuousNetworkProfilingTaskSampling {
     string uriRegex = 1;
-    int32 minDuration = 2;
-    bool when4xx = 3;
-    bool when5xx = 4;
-    bool completeRequest = 5;
-    bool completeResponse = 6;
 }
