@@ -81,16 +81,17 @@ import "common/Common.proto";
 //         --- ServiceWithPolicy ---
 //         ServiceName: String
 //         UUID: String
-//         Policies: List
-//             ProcessCPUPercent: Integer
-//             ProcessThreadCount: Integer
-//             SystemLoad: Integer
-//             URIList: String List
-//             URIRegexList: String List
-//             URIMinCount: Integer
-//             URIErrorRate: Integer
-//             URITimeoutDuration: Integer
-//             URITimeoutRate: Integer
+//         Profiling: Multiple profiling configuration. Map
+//             Key: Profiling type. Enum, value = ON_CPU, OFF_CPU, NETWORK
+//             Value: Profiling policies. Map
+//                 Key: Monitoring type. Enum, value = PROCESS_CPU, PROCESS_THREAD_COUNT, SYSTEM_LOAD, PROCESS_RESPONSE_ERROR_RATE, PROCESS_RESPONSE_TIMEOUT
+//                 Value: Policy configuration. Object.
+//                     Threshold: String
+//                     Period: Integer
+//                     Count: Integer
+//                     URIList: String List
+//                     URIRegexList: String List
+//                     URITimeoutDuration: Integer
 //         ---------------------------
 //
 // Name: ContinuousProfilingReportTask
