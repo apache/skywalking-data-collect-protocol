@@ -84,13 +84,13 @@ import "common/Common.proto";
 //         Profiling: Multiple profiling configuration. Map
 //             Key: Profiling type. Enum, value = ON_CPU, OFF_CPU, NETWORK
 //             Value: Profiling policies. Map
-//                 Key: Monitoring type. Enum, value = PROCESS_CPU, PROCESS_THREAD_COUNT, SYSTEM_LOAD, PROCESS_RESPONSE_ERROR_RATE, PROCESS_RESPONSE_AVG_TIME
+//                 Key: Monitoring type. Enum, value = PROCESS_CPU, PROCESS_THREAD_COUNT, SYSTEM_LOAD, HTTP_ERROR_RATE, HTTP_AVG_RESPONSE_TIME
 //                 Value: Policy configuration. Object.
 //                     Threshold: String
 //                     Period(s): Integer
 //                     Count: Integer
 //                     URIList: List<String>
-//                     URIRegexList: List<String>
+//                     URIRegex: String
 //         ---------------------------
 //
 // Name: ContinuousProfilingReportTask

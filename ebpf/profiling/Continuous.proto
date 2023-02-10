@@ -87,12 +87,12 @@ enum ContinuousProfilingCauseType {
     // System load value.
     SystemLoad = 2;
     // Process response error rate(0-100).
-    // For the HTTP, the response status [500-600) means error.
+    // HTTP response codes in [500-600) are considered errors.
     // Formula: ErrorCount / TotalCount * 100
-    ProcessResponseErrorRate = 3;
+    HTTPErrorRate = 3;
     // Process response average time(ms).
     // Formula: TotalResponseTime(ms) / TotalCount
-    ProcessResponseAvgTime = 4;
+    HTTPAvgResponseTime = 4;
 }
 
 message ContinuousProfilingSingleValueCause {
@@ -119,5 +119,5 @@ message ContinuousOffCPUProfilingTask {
 
 // eBPF Network profiling task
 message ContinuousNetworkProfilingTask {
-    string samplingURIRegexes = 1;
+    repeated string samplingURIRegexes = 1;
 }
