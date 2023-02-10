@@ -82,7 +82,7 @@ message ContinuousProfilingCause {
 enum ContinuousProfilingCauseType {
     // Current process CPU usage percent(0-100).
     ProcessCPU = 0;
-    // Current process thread count.
+    // The number of threads in the process.
     ProcessThreadCount = 1;
     // System load value.
     SystemLoad = 2;
