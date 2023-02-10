@@ -87,11 +87,11 @@ import "common/Common.proto";
 //                 Key: Monitoring type. Enum, value = PROCESS_CPU, PROCESS_THREAD_COUNT, SYSTEM_LOAD, PROCESS_RESPONSE_ERROR_RATE, PROCESS_RESPONSE_TIMEOUT_RATE
 //                 Value: Policy configuration. Object.
 //                     Threshold: String
-//                     Period: Integer
+//                     Period(s): Integer
 //                     Count: Integer
-//                     URIList: String List
-//                     URIRegexList: String List
-//                     URITimeoutDuration: Integer
+//                     URIList: List<String>
+//                     URIRegexList: List<String>
+//                     URITimeoutDuration(ms): Integer
 //         ---------------------------
 //
 // Name: ContinuousProfilingReportTask
