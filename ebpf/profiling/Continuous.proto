@@ -60,7 +60,8 @@ message ContinuousProfilingReport {
     // reached thresholds causes
     repeated ContinuousProfilingCause causes = 5;
 
-    // target profiling task execute duration
+    // The execution duration for this triggered profiling.
+    // This is set at the agent side.
     int32 duration = 6;
     // target profiling task
     oneof targetTask {
