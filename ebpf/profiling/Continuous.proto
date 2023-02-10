@@ -80,11 +80,19 @@ message ContinuousProfilingCause {
 }
 
 enum ContinuousProfilingCauseType {
+    // Current process CPU usage percent(0-100).
     ProcessCPU = 0;
+    // Current process thread count.
     ProcessThreadCount = 1;
+    // System load value.
     SystemLoad = 2;
+    // Process response error rate(0-100).
+    // For the HTTP, the response status [500-600) means error.
+    // Formula: ErrorCount / TotalCount * 100
     ProcessResponseErrorRate = 3;
-    ProcessResponseTimeoutRate = 4;
+    // Process response average time(ms).
+    // Formula: TotalResponseTime(ms) / TotalCount
+    ProcessResponseAvgTime = 4;
 }
 
 message ContinuousProfilingSingleValueCause {
