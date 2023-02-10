@@ -119,5 +119,5 @@ message ContinuousOffCPUProfilingTask {
 
 // eBPF Network profiling task
 message ContinuousNetworkProfilingTask {
-    repeated string samplingURIRegexes = 1;
+    string samplingURIRegex = 1;
 }
