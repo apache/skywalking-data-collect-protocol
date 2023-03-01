@@ -72,14 +72,14 @@ message ContinuousProfilingReport {
 }
 
 message ContinuousProfilingCause {
-    ContinuousProfilingCauseType type = 1;
+    ContinuousProfilingTriggeredMonitorType type = 1;
     oneof cause {
         ContinuousProfilingSingleValueCause singleValue = 2;
         ContinuousProfilingURICause uri = 3;
     }
 }
 
-enum ContinuousProfilingCauseType {
+enum ContinuousProfilingTriggeredMonitorType {
     // Current process CPU usage percent(0-100).
     ProcessCPU = 0;
     // The number of threads in the process.
