@@ -25,7 +25,7 @@ on:
       - 'v*'
 jobs:
   CI:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v2
