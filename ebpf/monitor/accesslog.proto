@@ -41,7 +41,7 @@ message EBPFAccessLogMessage {
     repeated AccessLogKernelLog kernelLogs = 3;
     // application protocol log
     // if the protocol is detected, the kernel logs is works the related logs
-    // otherwise, the kernel log not related and send with frequency
+    // otherwise, the kernel log is not related and is sent periodically
     AccessLogProtocolLogs protocolLog = 4;
 }
 
