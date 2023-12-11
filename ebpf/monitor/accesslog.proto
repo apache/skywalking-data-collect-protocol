@@ -321,7 +321,6 @@ enum AccessLogKernelReadSyscall {
 message EBPFTimestamp {
     oneof timestamp {
         EBPFOffsetTimestamp offset = 1;
-        Instant absolute = 2;
     }
 }
 
