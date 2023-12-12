@@ -25,7 +25,6 @@ option java_package = "org.apache.skywalking.apm.network.ebpf.accesslog.v3";
 option go_package = "skywalking.apache.org/repo/goapi/collect/ebpf/accesslog/v3";
 
 import "common/Common.proto";
-import "common/Command.proto";
 
 service EBPFAccessLogService {
     rpc collect(stream EBPFAccessLogMessage) returns (EBPFAccessLogDownstream) {
@@ -95,7 +94,7 @@ message IPAddress {
 }
 
 enum AccessLogConnectionTLSMode {
-    Normal = 0;
+    Plain = 0;
     TLS = 1;
 }
 
