@@ -286,9 +286,9 @@ message AccessLogKernelReadL2Metrics {
     uint32 totalPackageCount = 2;
     // total package size
     uint64 totalPackageSize = 3;
-    // total package receive to enqueue(wait for reading) duration(nanosecond)
+    // total duration(nanosecond) of all data packets queued (waiting to be read).
     uint64 totalPackageToQueueDuration = 4;
-    // total package enqueue to read duration(nanosecond)
+    // total duration(nanosecond) of all data packets read from the queue.
     uint64 totalRcvPackageFromQueueDuration = 5;
 }
 
