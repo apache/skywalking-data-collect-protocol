@@ -101,9 +101,10 @@ enum AccessLogConnectionTLSMode {
 message AccessLogKernelLog {
     oneof operation {
         AccessLogKernelConnectOperation connect = 1;
-        AccessLogKernelCloseOperation close = 2;
-        AccessLogKernelReadOperation read = 3;
-        AccessLogKernelWriteOperation write = 4;
+        AccessLogKernelAcceptOperation accept = 2;
+        AccessLogKernelCloseOperation close = 3;
+        AccessLogKernelReadOperation read = 4;
+        AccessLogKernelWriteOperation write = 5;
     }
 }
 
@@ -186,6 +187,13 @@ message AccessLogKernelConnectOperation {
     EBPFTimestamp endTime = 2;
     // Is the connect operation success or not
     bool success = 3;
+}
+
+message AccessLogKernelAcceptOperation {
+    // Starting to accept socket timestamp
+    EBPFTimestamp startTime = 1;
+    // Finish accept operation timestamp
+    EBPFTimestamp endTime = 2;
 }
 
 message AccessLogKernelCloseOperation {
@@ -278,8 +286,10 @@ message AccessLogKernelReadL2Metrics {
     uint32 totalPackageCount = 2;
     // total package size
     uint64 totalPackageSize = 3;
-    // total package from receive to enqueue(wait for reading) duration(nanosecond)
+    // total duration(nanosecond) of all data packets queued (waiting to be read).
     uint64 totalPackageToQueueDuration = 4;
+    // total duration(nanosecond) of all data packets read from the queue.
+    uint64 totalRcvPackageFromQueueDuration = 5;
 }
 
 message AccessLogKernelReadL3Metrics {
