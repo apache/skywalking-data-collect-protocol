@@ -51,6 +51,8 @@ message EBPFAccessLogNodeInfo {
     repeated EBPFAccessLogNodeNetInterface netInterfaces = 2;
     // System boot time
     Instant bootTime = 3;
+    // Cluster name
+    string clusterName = 4;
 }
 
 message EBPFAccessLogNodeNetInterface {
@@ -69,6 +71,8 @@ message AccessLogConnection {
     DetectPoint role = 3;
     // is the connection using TLS or not
     AccessLogConnectionTLSMode tlsMode = 4;
+    // application protocol type
+    AccessLogProtocolType protocol = 5;
 }
 
 message ConnectionAddress {
@@ -325,6 +329,11 @@ enum AccessLogKernelReadSyscall {
     RecvFrom = 3;
     RecvMsg = 4;
     RecvMmsg = 5;
+}
+
+enum AccessLogProtocolType {
+    TCP = 0;
+    HTTP = 1;
 }
 
 message EBPFTimestamp {
