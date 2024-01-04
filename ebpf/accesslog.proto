@@ -332,7 +332,7 @@ enum AccessLogKernelReadSyscall {
 }
 
 enum AccessLogProtocolType {
-    Unknown = 0;
+    TCP = 0;
     HTTP = 1;
 }
 
