@@ -32,8 +32,8 @@ service EBPFAccessLogService {
 }
 
 message EBPFAccessLogMessage {
-    // metadata of access log, only not null when first message
-    EBPFAccessLogMetadata metadata = 1;
+    // current node information, only not null when first message or have update
+    EBPFAccessLogNodeInfo node = 1;
     // local process and remote process connection information
     AccessLogConnection connection = 2;
     // kernel level metrics
@@ -42,18 +42,6 @@ message EBPFAccessLogMessage {
     // if the protocol is detected, the kernel logs is works the related logs
     // otherwise, the kernel log is not related and is sent periodically
     AccessLogProtocolLogs protocolLog = 4;
-}
-
-message EBPFAccessLogMetadata {
-    // current node information
-    EBPFAccessLogNodeInfo node = 1;
-    // policy for access logs
-    EBPFAccessLogPolicy policy = 2;
-}
-
-message EBPFAccessLogPolicy {
-    // which namespaces should be excluded to generate the connection
-    repeated string excludeNamespaces = 1;
 }
 
 message EBPFAccessLogNodeInfo {
