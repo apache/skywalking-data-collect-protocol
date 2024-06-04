@@ -53,6 +53,13 @@ message EBPFAccessLogNodeInfo {
     Instant bootTime = 3;
     // Cluster name
     string clusterName = 4;
+    // Policy for the access log
+    EBPFAccessLogPolicy policy = 5;
+}
+
+message EBPFAccessLogPolicy {
+    // Which namespaces should be excluded to generate the connection
+    repeated string excludeNamespaces = 1;
 }
 
 message EBPFAccessLogNodeNetInterface {
