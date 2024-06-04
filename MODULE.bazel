@@ -15,16 +15,20 @@
 # limitations under the License.
 #
 
-load("@rules_proto//proto:defs.bzl", "proto_library")
+module(
+    name = "skywalking-data-collect-protocol",
+)
 
-package(default_visibility = ["//visibility:public"])
-
-licenses(["notice"])  # Apache 2
-
-proto_library(
-    name = "common_protocol_proto_lib",
-    srcs = [
-      "Command.proto",
-      "Common.proto",
-    ],
+bazel_dep(
+    name = "grpc",
+    version = "1.56.3.bcr.1",
+    repo_name = "com_github_grpc_grpc",
+)
+bazel_dep(
+    name = "rules_cc",
+    version = "0.0.9",
+)
+bazel_dep(
+    name = "rules_proto",
+    version = "5.3.0-21.7",
 )
