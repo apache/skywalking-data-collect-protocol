@@ -23,5 +23,8 @@ licenses(["notice"])  # Apache 2
 
 proto_library(
   name = "common_protocol_proto_lib",
-  srcs = ["Common.proto"],
+  srcs = [
+      "Command.proto",
+      "Common.proto",
+  ],
 )
