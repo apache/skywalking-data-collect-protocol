@@ -80,6 +80,21 @@ message AccessLogConnection {
     AccessLogConnectionTLSMode tlsMode = 4;
     // application protocol type
     AccessLogProtocolType protocol = 5;
+    // the attachment information about the connection
+    Attachment attachment = 6;
+}
+
+message Attachment {
+    // detect contains the environment information
+    oneof environment {
+        // detect the connection have a zTunnel environment(ambient istio)
+        ZTunnelAttachmentEnvironment zTunnel = 1;
+    }
+}
+
+message ZTunnelAttachmentEnvironment {
+    // the real destination ip address of the connection
+    string real_destination_ip = 1;
 }
 
 message ConnectionAddress {
