@@ -81,10 +81,10 @@ message AccessLogConnection {
     // application protocol type
     AccessLogProtocolType protocol = 5;
     // the attachment information about the connection
-    Attachment attachment = 6;
+    ConnectionAttachment attachment = 6;
 }
 
-message Attachment {
+message ConnectionAttachment {
     // detect contains the environment information
     oneof environment {
         // detect the connection have a zTunnel environment(ambient istio)
