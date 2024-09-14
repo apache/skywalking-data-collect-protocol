@@ -95,6 +95,12 @@ message ConnectionAttachment {
 message ZTunnelAttachmentEnvironment {
     // the real destination ip address of the connection
     string real_destination_ip = 1;
+    // how the environment detected
+    ZTunnelAttachmentEnvironmentDetectBy by = 2;
+}
+
+enum ZTunnelAttachmentEnvironmentDetectBy {
+    ZTUNNEL_OUTBOUND_FUNC = 0;
 }
 
 message ConnectionAddress {
