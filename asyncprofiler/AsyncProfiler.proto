@@ -67,6 +67,6 @@ message AsyncProfilerTaskCommandQuery {
   string service = 1;
   string serviceInstance = 2;
 
-  // last command timestamp
+  // lastCommandTime is the timestamp of the last AsyncProfiler task received
   int64 lastCommandTime = 3;
 }
