@@ -34,7 +34,7 @@ service AsyncProfilerTask {
 }
 
 message AsyncProfilerData {
-  // current sniffer metadata information, first upload
+  // metaData of the AsyncProfiler task and its result data, only sent in the first request.
   AsyncProfilerMetaData metaData = 1;
 
   oneof result {
