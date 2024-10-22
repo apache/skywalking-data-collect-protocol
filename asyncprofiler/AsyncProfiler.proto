@@ -27,7 +27,7 @@ option go_package = "skywalking.apache.org/repo/goapi/collect/language/asyncprof
 import "common/Command.proto";
 
 service AsyncProfilerTask {
-  // collect jfr binary data
+  // collect sends JFR data to the OAP server
   rpc collect(stream AsyncProfilerData) returns (skywalking.v3.Commands);
   // getAsyncProfilerTaskCommands sends query to the OAP server for all AsyncProfiler tasks to be executed for the given Java Agent instance
   rpc getAsyncProfilerTaskCommands (AsyncProfilerTaskCommandQuery) returns (skywalking.v3.Commands);
