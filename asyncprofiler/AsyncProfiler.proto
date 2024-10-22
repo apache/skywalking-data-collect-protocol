@@ -17,41 +17,52 @@
  */
 
 syntax = "proto3";
-
-package skywalking.v3;
+package skywalking.v10;
 
 option java_multiple_files = true;
-option java_package = "org.apache.skywalking.apm.network.language.asyncprofile.v3";
-option csharp_namespace = "SkyWalking.NetworkProtocol.V3";
-option go_package = "skywalking.apache.org/repo/goapi/collect/language/profile/v3";
+option java_package = "org.apache.skywalking.apm.network.language.asyncprofiler.v10";
+option csharp_namespace = "SkyWalking.NetworkProtocol.V10";
+option go_package = "skywalking.apache.org/repo/goapi/collect/language/asyncprofiler/v10";
 
 import "common/Command.proto";
 
 service AsyncProfilerTask {
-  // collect data
-  rpc collect(stream AsyncProfilerData) returns (Commands);
+  // collect jfr binary data
+  rpc collect(stream AsyncProfilerData) returns (skywalking.v3.Commands);
   // query all sniffer need to execute profile task commands
-  rpc getAsyncProfileTaskCommands (AsyncProfileTaskCommandQuery) returns (Commands);
+  rpc getAsyncProfilerTaskCommands (AsyncProfilerTaskCommandQuery) returns (skywalking.v3.Commands);
 }
 
 message AsyncProfilerData {
-  // current sniffer information
-  oneof payload {
-    AsyncProfilerMetaData metaData = 1;
-    // file content
-    bytes content = 99;
+  // current sniffer metadata information, first upload
+  AsyncProfilerMetaData metaData = 1;
+
+  oneof result {
+    string errorMessage = 2;
+    // JFR binary content
+    bytes content = 3;
   }
+}
+
+enum AsyncProfilerCollectType {
+  // PROFILING_SUCCESS means the Java Agent has finished the execution
+  PROFILING_SUCCESS = 0;
+  // EXECUTION_TASK_ERROR means potential execution error caused by the Java Agent, such as an error in the sent task parameters.
+  EXECUTION_TASK_ERROR = 1;
 }
 
 message AsyncProfilerMetaData {
   string service = 1;
   string serviceInstance = 2;
-  int64 uploadTime = 3;
-  // profiler task
-  string taskId = 4;
+  // async-profiler task id
+  string taskId = 3;
+  // AsyncProfilerCollectType means profiling success or failure
+  AsyncProfilerCollectType type = 4;
+  // if type is success then it will be the size of the JFR file, otherwise it will be 0
+  int32 contentSize = 5;
 }
 
-message AsyncProfileTaskCommandQuery {
+message AsyncProfilerTaskCommandQuery {
   // current sniffer information
   string service = 1;
   string serviceInstance = 2;
