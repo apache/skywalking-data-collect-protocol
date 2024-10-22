@@ -29,7 +29,7 @@ import "common/Command.proto";
 service AsyncProfilerTask {
   // collect jfr binary data
   rpc collect(stream AsyncProfilerData) returns (skywalking.v3.Commands);
-  // query all sniffer need to execute profile task commands
+  // getAsyncProfilerTaskCommands sends query to the OAP server for all AsyncProfiler tasks to be executed for the given Java Agent instance
   rpc getAsyncProfilerTaskCommands (AsyncProfilerTaskCommandQuery) returns (skywalking.v3.Commands);
 }
 
