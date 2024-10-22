@@ -63,7 +63,7 @@ message AsyncProfilerMetaData {
 }
 
 message AsyncProfilerTaskCommandQuery {
-  // current sniffer information
+  // service name of the Java process
   string service = 1;
   string serviceInstance = 2;
 
