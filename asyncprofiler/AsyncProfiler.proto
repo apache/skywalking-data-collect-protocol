@@ -28,7 +28,7 @@ import "common/Command.proto";
 
 service AsyncProfilerTask {
   // collect sends JFR data to the OAP server
-  rpc collect(stream AsyncProfilerData) returns (skywalking.v3.Commands);
+  rpc collect(stream AsyncProfilerData) returns (stream AsyncProfilerCollectMessage);
   // getAsyncProfilerTaskCommands sends query to the OAP server for all AsyncProfiler tasks to be executed for the given Java Agent instance
   rpc getAsyncProfilerTaskCommands (AsyncProfilerTaskCommandQuery) returns (skywalking.v3.Commands);
 }
@@ -44,11 +44,18 @@ message AsyncProfilerData {
   }
 }
 
+message AsyncProfilerCollectMessage {
+    AsyncProfilerCollectType type = 1;
+}
+
 enum AsyncProfilerCollectType {
   // PROFILING_SUCCESS means the Java Agent has finished the execution
   PROFILING_SUCCESS = 0;
   // EXECUTION_TASK_ERROR means potential execution error caused by the Java Agent, such as an error in the sent task parameters.
   EXECUTION_TASK_ERROR = 1;
+
+  CAN_NOT_RECEIVE_JFR = 2;
+  UPLOAD_JFR = 3;
 }
 
 message AsyncProfilerMetaData {
