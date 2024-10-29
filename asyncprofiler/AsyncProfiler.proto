@@ -28,7 +28,7 @@ import "common/Command.proto";
 
 service AsyncProfilerTask {
   // collect sends JFR data to the OAP server
-  rpc collect(stream AsyncProfilerData) returns (skywalking.v3.Commands);
+  rpc collect(stream AsyncProfilerData) returns (stream AsyncProfilerCollectionResponse);
   // getAsyncProfilerTaskCommands sends query to the OAP server for all AsyncProfiler tasks to be executed for the given Java Agent instance
   rpc getAsyncProfilerTaskCommands (AsyncProfilerTaskCommandQuery) returns (skywalking.v3.Commands);
 }
@@ -44,11 +44,17 @@ message AsyncProfilerData {
   }
 }
 
-enum AsyncProfilerCollectType {
-  // PROFILING_SUCCESS means the Java Agent has finished the execution
+message AsyncProfilerCollectionResponse {
+  AsyncProfilingStatus type = 1;
+}
+
+enum AsyncProfilingStatus {
+  // PROFILING_SUCCESS indicates the Java Agent has finished the execution
   PROFILING_SUCCESS = 0;
-  // EXECUTION_TASK_ERROR means potential execution error caused by the Java Agent, such as an error in the sent task parameters.
+  // EXECUTION_TASK_ERROR indicates a potential execution error caused by the Java Agent, such as an error in the task parameters that were sent.
   EXECUTION_TASK_ERROR = 1;
+  // TERMINATED_BY_OVERSIZE means that the server cannot receive the JFR file because the size of the file is over the limitation.
+  TERMINATED_BY_OVERSIZE = 2;
 }
 
 message AsyncProfilerMetaData {
@@ -57,7 +63,7 @@ message AsyncProfilerMetaData {
   // async-profiler task id
   string taskId = 3;
   // AsyncProfilerCollectType indicates the overall status of the AsyncProfiler task, i.e. success or failure
-  AsyncProfilerCollectType type = 4;
+  AsyncProfilingStatus type = 4;
   // if type is success then it will be the size of the JFR file, otherwise it will be 0
   int32 contentSize = 5;
 }
