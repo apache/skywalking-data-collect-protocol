@@ -53,7 +53,7 @@ enum AsyncProfilerCollectType {
   PROFILING_SUCCESS = 0;
   // EXECUTION_TASK_ERROR means potential execution error caused by the Java Agent, such as an error in the sent task parameters.
   EXECUTION_TASK_ERROR = 1;
-  // TERMINATED_BY_OVERSIZE means that the server cannot receive the jfr file because it is too large.
+  // TERMINATED_BY_OVERSIZE means that the server cannot receive the JFR file because the size of the file is over the limitation.
   TERMINATED_BY_OVERSIZE = 2;
 }
 
