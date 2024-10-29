@@ -49,7 +49,7 @@ message AsyncProfilerCollectMessage {
 }
 
 enum AsyncProfilerCollectType {
-  // PROFILING_SUCCESS means the Java Agent has finished the execution
+  // PROFILING_SUCCESS indicates the Java Agent has finished the execution
   PROFILING_SUCCESS = 0;
   // EXECUTION_TASK_ERROR indicates a potential execution error caused by the Java Agent, such as an error in the task parameters that were sent.
   EXECUTION_TASK_ERROR = 1;
