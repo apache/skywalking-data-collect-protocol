@@ -44,7 +44,7 @@ message AsyncProfilerData {
   }
 }
 
-message AsyncProfilerCollectMessage {
+message AsyncProfilerCollectionResponse {
     AsyncProfilerCollectType type = 1;
 }
 
