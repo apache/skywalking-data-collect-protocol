@@ -28,7 +28,7 @@ import "common/Command.proto";
 
 service AsyncProfilerTask {
   // collect sends JFR data to the OAP server
-  rpc collect(stream AsyncProfilerData) returns (stream AsyncProfilerCollectMessage);
+  rpc collect(stream AsyncProfilerData) returns (stream AsyncProfilerCollectionResponse);
   // getAsyncProfilerTaskCommands sends query to the OAP server for all AsyncProfiler tasks to be executed for the given Java Agent instance
   rpc getAsyncProfilerTaskCommands (AsyncProfilerTaskCommandQuery) returns (skywalking.v3.Commands);
 }
@@ -45,7 +45,7 @@ message AsyncProfilerData {
 }
 
 message AsyncProfilerCollectionResponse {
-    AsyncProfilerCollectType type = 1;
+  AsyncProfilingStatus type = 1;
 }
 
 enum AsyncProfilingStatus {
@@ -63,7 +63,7 @@ message AsyncProfilerMetaData {
   // async-profiler task id
   string taskId = 3;
   // AsyncProfilerCollectType indicates the overall status of the AsyncProfiler task, i.e. success or failure
-  AsyncProfilerCollectType type = 4;
+  AsyncProfilingStatus type = 4;
   // if type is success then it will be the size of the JFR file, otherwise it will be 0
   int32 contentSize = 5;
 }
