@@ -34,6 +34,14 @@ service BrowserPerfService {
     rpc collectPerfData (BrowserPerfData) returns (Commands) {
     }
 
+    // report one or more web vitals data for pages, could report multiple times.
+    rpc collectWebVitalsPerfData (BrowserWebVitalsPerfData) returns (Commands) {
+    }
+
+    // report one or more resource data for pages, could report multiple times.
+    rpc collectResourcePerfData (BrowserResourcePerfData) returns (Commands) {
+    }
+
     // report one or more error logs for pages, could report multiple times.
     rpc collectErrorLogs (stream BrowserErrorLog) returns (Commands) {
     }
@@ -109,3 +117,40 @@ enum ErrorCategory {
     unknown = 5;
 }
 
+message BrowserWebVitalsPerfData {
+    string service = 1;
+    // Service version in browser is the Instance concept in the backend.
+    string serviceVersion = 2;
+    // Perf data time, set by the backend side.
+    int64 time = 3;
+    // Page path in browser is the endpoint concept in the backend
+    // Page path in the browser, mostly it is URI, without parameter
+    string pagePath = 4;
+    // First Meaningful Paint time
+    int32 fmpTime = 5;
+    // Cumulative Layout Shift time
+    int32 clsTime = 6;
+    // Largest Contentful Paint time
+    int32 lcpTime = 7;
+}
+
+message BrowserResourcePerfData {
+    string service = 1;
+    // Service version in browser is the Instance concept in the backend.
+    string serviceVersion = 2;
+    // Perf data time, set by the backend side.
+    int64 time = 3;
+    // Page path in browser is the endpoint concept in the backend
+    // Page path in the browser, mostly it is URI, without parameter
+    string pagePath = 4;
+    // Resource URL
+    string name = 5;
+    // Resource load time
+    int32 duration = 6;
+    // Resource size
+    int32 size = 7;
+    // Resource load protocol
+    string protocol = 9;
+    // Resource type
+    string resourceType = 8;
+}
