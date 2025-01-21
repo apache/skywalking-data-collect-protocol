@@ -42,6 +42,10 @@ service BrowserPerfService {
     rpc collectResourcePerfData (BrowserResourcePerfData) returns (Commands) {
     }
 
+    // report one or more web interactions data for pages, could report multiple times.
+    rpc collectWebInteractionsPerfData (BrowserWebInteractionsPerfData) returns (Commands) {
+    }
+
     // report one or more error logs for pages, could report multiple times.
     rpc collectErrorLogs (stream BrowserErrorLog) returns (Commands) {
     }
@@ -153,4 +157,17 @@ message BrowserResourcePerfData {
     string protocol = 9;
     // Resource type
     string resourceType = 8;
+}
+
+message BrowserWebInteractionsPerfData {
+    string service = 1;
+    // Service version in browser is the Instance concept in the backend.
+    string serviceVersion = 2;
+    // Perf data time, set by the backend side.
+    int64 time = 3;
+    // Page path in browser is the endpoint concept in the backend
+    // Page path in the browser, mostly it is URI, without parameter
+    string pagePath = 4;
+    // Interaction to Next Paint time
+    int32 inpTime = 5;
 }
