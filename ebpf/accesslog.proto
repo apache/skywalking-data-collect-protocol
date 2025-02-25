@@ -177,6 +177,8 @@ message AccessLogHTTPProtocolRequest {
     uint64 sizeOfBodyBytes = 4;
     // The trace information if detected.
     AccessLogTraceInfo trace = 5;
+    // The host header of the incoming request.
+    string host = 6;
 }
 
 message AccessLogHTTPProtocolResponse {
