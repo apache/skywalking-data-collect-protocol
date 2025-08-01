@@ -85,11 +85,9 @@ message ProfileTaskFinishReport {
 // profile for go agent
 message GoProfileData{
     string taskId = 1;
-    string traceId=2;
-    string endPointName=3;
-    int64 minDurationThreshold=4;
+    string traceSegmentId=2;
     // the truly profile data
-    bytes payload=5;
+    bytes payload=3;
     // check last part true or false
-    bool isLast = 6;
+    bool isLast = 4;
 }
