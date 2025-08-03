@@ -90,4 +90,8 @@ message GoProfileData{
     bytes payload=3;
     // check last part true or false
     bool isLast = 4;
+    // Span IDs with duration greater than minDuration,only in the last chunk
+    repeated int32 spanIds=5;
+    // use to reassemble fragments
+    int32 chunkId = 6;
 }
