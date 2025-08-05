@@ -27,6 +27,8 @@ option go_package = "skywalking.apache.org/repo/goapi/collect/language/pprof/v10
 import "common/Command.proto";
 
 service PprofTask {
+  // tryUpload check the pprof data size.
+  rpc tryUpload(PprofMetaData) returns (PprofTryUploadResponse);
   // collect pprof data to the OAP server.
   rpc collect (stream PprofData) returns (skywalking.v3.Commands);
   // getPprofTaskCommands sends query to the OAP server for all pprof tasks to be executed for the given Go Agent instance
@@ -34,9 +36,7 @@ service PprofTask {
 }
 
 message PprofData {
-  // metaData of the pprof task and its result data, only sent in the first request.
-  PprofMetaData metaData = 1;
-
+  PprofMetaData metadata = 1;
   oneof result {
     string errorMessage = 2;
     // pprof binary content
@@ -46,11 +46,15 @@ message PprofData {
 
 enum PprofProfilingStatus {
   // PROFILING_SUCCESS indicates the Go Agent has finished the execution
-  PROFILING_SUCCESS = 0;
+  PPROF_PROFILING_SUCCESS = 0;
   // EXECUTION_TASK_ERROR indicates a potential execution error caused by the Go Agent, such as an error in the task parameters that were sent.
-  EXECUTION_TASK_ERROR = 1;
+  PPROF_EXECUTION_TASK_ERROR = 1;
   // TERMINATED_BY_OVERSIZE means that the server cannot receive the pprof file because the size of the file is over the limitation.
-  TERMINATED_BY_OVERSIZE = 2;
+  PPROF_TERMINATED_BY_OVERSIZE = 2;
+}
+
+message PprofTryUploadResponse {
+  PprofProfilingStatus status = 1;
 }
 
 message PprofMetaData {
