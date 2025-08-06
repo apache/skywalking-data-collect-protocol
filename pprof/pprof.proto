@@ -27,15 +27,14 @@ option go_package = "skywalking.apache.org/repo/goapi/collect/language/pprof/v10
 import "common/Command.proto";
 
 service PprofTask {
-  // tryUpload check the pprof data size.
-  rpc tryUpload(PprofMetaData) returns (PprofTryUploadResponse);
   // collect pprof data to the OAP server.
-  rpc collect (stream PprofData) returns (skywalking.v3.Commands);
+  rpc collect (stream PprofData) returns (stream PprofCollectionResponse);
   // getPprofTaskCommands sends query to the OAP server for all pprof tasks to be executed for the given Go Agent instance
   rpc getPprofTaskCommands (PprofTaskCommandQuery) returns (skywalking.v3.Commands);
 }
 
 message PprofData {
+    // metaData of the pprof task and its result data, only sent in the first request.
   PprofMetaData metadata = 1;
   oneof result {
     string errorMessage = 2;
@@ -53,7 +52,7 @@ enum PprofProfilingStatus {
   PPROF_TERMINATED_BY_OVERSIZE = 2;
 }
 
-message PprofTryUploadResponse {
+message PprofCollectionResponse {
   PprofProfilingStatus status = 1;
 }
 
