@@ -20,9 +20,9 @@ syntax = "proto3";
 package skywalking.v10;
 
 option java_multiple_files = true;
-option java_package = "org.apache.skywalking.apm.network.language.pprof.v10";
+option java_package = "org.apache.skywalking.apm.network.pprof.v10";
 option csharp_namespace = "SkyWalking.NetworkProtocol.V10";
-option go_package = "skywalking.apache.org/repo/goapi/collect/language/pprof/v10";
+option go_package = "skywalking.apache.org/repo/goapi/collect/pprof/v10";
 
 import "common/Command.proto";
 
@@ -34,7 +34,7 @@ service PprofTask {
 }
 
 message PprofData {
-    // metaData of the pprof task and its result data, only sent in the first request.
+  // metaData of the pprof task and its result data, only sent in the first request.
   PprofMetaData metadata = 1;
   oneof result {
     string errorMessage = 2;
