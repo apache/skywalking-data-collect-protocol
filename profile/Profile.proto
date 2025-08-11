@@ -89,6 +89,4 @@ message GoProfileData{
     bytes payload=2;
     // check last part true or false
     bool isLast = 3;
-    // use to reassemble fragments
-    int32 chunkId = 4;
 }
