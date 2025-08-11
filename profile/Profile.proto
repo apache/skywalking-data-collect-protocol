@@ -85,13 +85,10 @@ message ProfileTaskFinishReport {
 // profile for go agent
 message GoProfileData{
     string taskId = 1;
-    string traceSegmentId=2;
     // the truly profile data
-    bytes payload=3;
+    bytes payload=2;
     // check last part true or false
-    bool isLast = 4;
-    // Span IDs with duration greater than minDuration,only in the last chunk
-    repeated int32 spanIds=5;
+    bool isLast = 3;
     // use to reassemble fragments
-    int32 chunkId = 6;
+    int32 chunkId = 4;
 }
