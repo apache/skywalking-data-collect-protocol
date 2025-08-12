@@ -37,7 +37,8 @@ service ProfileTask {
     rpc collectSnapshot (stream ThreadSnapshot) returns (Commands) {
     }
     // collect bytes profile data from go agent
-    rpc goProfileReport(stream GoProfileData)returns(Commands){}
+    rpc goProfileReport (stream GoProfileData) returns (Commands) {
+    }
     // report profiling task finished
     rpc reportTaskFinish (ProfileTaskFinishReport) returns (Commands) {
     }
