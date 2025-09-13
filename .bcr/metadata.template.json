@@ -1,0 +1,16 @@
+{
+    "homepage": "https://github.com/apache/skywalking-data-collect-protocol",
+    "maintainers": [
+        {
+            "name": "Wu Sheng",
+            "email": "wusheng@apache.org",
+            "github": "wu-sheng",
+            "github_user_id": 5441976
+        }
+    ],
+    "repository": [
+        "github:apache/skywalking-data-collect-protocol"
+    ],
+    "versions": [],
+    "yanked_versions": {}
+}
