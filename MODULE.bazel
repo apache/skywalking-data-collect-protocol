@@ -21,6 +21,5 @@ module(
     repo_name = "skywalking_data_collect_protocol",
 )
 
-bazel_dep(name = "rules_proto", version = "7.1.0")
 bazel_dep(name = "grpc", version = "1.74.1", repo_name = "com_github_grpc_grpc")
 bazel_dep(name = "protobuf", version = "32.0", repo_name = "com_google_protobuf")
