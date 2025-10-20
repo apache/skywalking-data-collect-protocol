@@ -99,6 +99,8 @@ message ZTunnelAttachmentEnvironment {
     ZTunnelAttachmentEnvironmentDetectBy by = 2;
     // the security policy of the ztunnel communicate with upstream
     ZTunnelAttachmentSecurityPolicy security_policy = 3;
+    // additional arguments
+    repeated KeyStringValuePair addition = 4;
 }
 
 enum ZTunnelAttachmentEnvironmentDetectBy {
