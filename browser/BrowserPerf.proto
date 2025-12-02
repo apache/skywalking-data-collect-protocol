@@ -133,7 +133,7 @@ message BrowserWebVitalsPerfData {
     // First Meaningful Paint time
     int32 fmpTime = 5;
     // Cumulative Layout Shift time
-    int32 clsTime = 6;
+    double clsTime = 6;
     // Largest Contentful Paint time
     int32 lcpTime = 7;
 }
