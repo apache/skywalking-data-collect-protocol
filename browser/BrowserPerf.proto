@@ -132,7 +132,7 @@ message BrowserWebVitalsPerfData {
     string pagePath = 4;
     // First Meaningful Paint time
     int32 fmpTime = 5;
-    // Cumulative Layout Shift
+    // Cumulative Layout Shift score
     double cls = 6;
     // Largest Contentful Paint time
     int32 lcpTime = 7;
