@@ -91,7 +91,9 @@ message BrowserPerfData {
 }
 
 message BrowserErrorLog {
-    // UUID
+    // Deprecated UUID and optional since 10.4
+    // OAP Server generated ID to replace this one.
+    // Browser scripts can't guarantee generated IDs are globally unique, don't use this as log ID anymore.
     string uniqueId = 1;
     string service = 2;
     // Service version in browser is the Instance concept in the backend.
