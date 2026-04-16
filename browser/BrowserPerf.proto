@@ -55,6 +55,8 @@ message BrowserPerfData {
     string service = 1;
     // Service version in browser is the Instance concept in the backend.
     string serviceVersion = 2;
+    // Optional browser-related service layer. OAP falls back to BROWSER when this is empty or unsupported.
+    string layer = 19;
     // Perf data time, set by the backend side.
     int64 time = 3;
     // Page path in browser is the endpoint concept in the backend
@@ -98,6 +100,8 @@ message BrowserErrorLog {
     string service = 2;
     // Service version in browser is the Instance concept in the backend.
     string serviceVersion = 3;
+    // Optional browser-related service layer. OAP falls back to BROWSER when this is empty or unsupported.
+    string layer = 14;
     // Error log time, set by the backend side.
     int64 time = 4;
     // Page path in browser is the endpoint concept in the backend
@@ -127,6 +131,8 @@ message BrowserWebVitalsPerfData {
     string service = 1;
     // Service version in browser is the Instance concept in the backend.
     string serviceVersion = 2;
+    // Optional browser-related service layer. OAP falls back to BROWSER when this is empty or unsupported.
+    string layer = 8;
     // Perf data time, set by the backend side.
     int64 time = 3;
     // Page path in browser is the endpoint concept in the backend
@@ -144,6 +150,8 @@ message BrowserResourcePerfData {
     string service = 1;
     // Service version in browser is the Instance concept in the backend.
     string serviceVersion = 2;
+    // Optional browser-related service layer. OAP falls back to BROWSER when this is empty or unsupported.
+    string layer = 10;
     // Perf data time, set by the backend side.
     int64 time = 3;
     // Page path in browser is the endpoint concept in the backend
@@ -165,6 +173,8 @@ message BrowserWebInteractionsPerfData {
     string service = 1;
     // Service version in browser is the Instance concept in the backend.
     string serviceVersion = 2;
+    // Optional browser-related service layer. OAP falls back to BROWSER when this is empty or unsupported.
+    string layer = 6;
     // Perf data time, set by the backend side.
     int64 time = 3;
     // Page path in browser is the endpoint concept in the backend
